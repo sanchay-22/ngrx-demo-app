@@ -21,7 +21,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     CounterOutputComponent,
     CustomInputCounterComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
