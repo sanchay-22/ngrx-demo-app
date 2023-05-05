@@ -4,29 +4,18 @@ import { CHANNEL_NAME_ACTION_CONST, CUSTOM_DECREMENT_ACTION_CONST, CUSTOM_INCREM
 import { untilDestroyed } from '@ngneat/until-destroy';
 import { tap } from 'rxjs';
 import { CounterStateModel } from '../state/counter.state';
+import { CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
 
 @Component({
   selector: 'app-custom-input-counter',
   templateUrl: './custom-input-counter.component.html',
   styleUrls: ['./custom-input-counter.component.css']
 })
-export class CustomInputCounterComponent implements OnInit{
+export class CustomInputCounterComponent{
   inputValue!: number;
-  channelName!: string;
+  channel$ = this.store.select(CHANNEL_NAME_SELECTOR_COST);
 
   constructor(private store: Store<{counter: CounterStateModel}>) {}
-
-  ngOnInit(): void {
-    this.initializer();
-  }
-
-  initializer(): void {
-    this.setData();
-  }
-
-  setData(): void {
-    this.store.select('counter').subscribe((data) => this.channelName = data.channelName);
-  }
 
   changeCounter(option: string): void {
     const operation = (option) ? CUSTOM_INCREMENT_ACTION_CONST : CUSTOM_DECREMENT_ACTION_CONST;
