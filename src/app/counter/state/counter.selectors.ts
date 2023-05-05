@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CounterStateModel } from './counter.state';
-import { state } from '@angular/animations';
 
 const GET_COUNTER_STATE_CONST = createFeatureSelector<CounterStateModel>('counter');
 

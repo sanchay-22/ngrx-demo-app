@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CHANNEL_NAME_ACTION_CONST, CUSTOM_DECREMENT_ACTION_CONST, CUSTOM_INCREMENT_ACTION_CONST } from '../state/counter.actions';
 import { untilDestroyed } from '@ngneat/until-destroy';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CounterStateModel } from '../state/counter.state';
 import { CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
 
@@ -13,7 +13,7 @@ import { CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
 })
 export class CustomInputCounterComponent{
   inputValue!: number;
-  channel$ = this.store.select(CHANNEL_NAME_SELECTOR_COST);
+  channel$: Observable<string> = this.store.select(CHANNEL_NAME_SELECTOR_COST);
 
   constructor(private store: Store<{counter: CounterStateModel}>) {}
 
