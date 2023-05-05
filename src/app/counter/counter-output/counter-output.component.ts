@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CounterModel } from '../state/counter.state';
+import { CounterStateModel } from '../state/counter.state';
+import { COUNTER_SELECTOR_CONST } from '../state/counter.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-counter-output',
@@ -16,7 +18,7 @@ export class CounterOutputComponent {
   */
 
   //with ngrx
-  counter$ = this.store.select('counter'); //this dolar sign indicates observable
-  constructor(private store:Store<{ counter: CounterModel}>) {}
+  counter$: Observable<number> = this.store.select(COUNTER_SELECTOR_CONST); //this dolar sign indicates observable
+  constructor(private store:Store<{ counter: CounterStateModel}>) {}
 
 }
