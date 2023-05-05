@@ -1,6 +1,11 @@
 <div>
+    <h3>Channel: {{channelName}}</h3>
     <label for="Input">Input Value: </label>&nbsp;
     <input type="text" placeholder="Enter value" [(ngModel)]="inputValue"/>&nbsp;
-    <button (click)="onClick('add')" class="btn btn-primary">Add to Counter</button> &nbsp;
-    <button (click)="onClick('')" class="btn btn-warning">Subtract from Counter</button>
+    <button (click)="changeCounter('add')" class="btn btn-primary">Add to Counter</button> &nbsp;
+    <button (click)="changeCounter('')" class="btn btn-warning">Subtract from Counter</button>
+</div>
+<br>
+<div>
+    <button (click)="changeChannel()">Change Channel</button>
 </div>

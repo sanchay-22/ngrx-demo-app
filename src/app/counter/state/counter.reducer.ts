@@ -8,7 +8,9 @@ const COUNTER_REDUCER_CONST = createReducer(INITAL_COUNTER_STATE,
     on(actions.RESET_ACTION_CONST, (state) => ({...state, counter: 0})),
 
     on(actions.CUSTOM_INCREMENT_ACTION_CONST, (state, action) => ({ ...state, counter: state.counter + action.value})),
-    on(actions.CUSTOM_DECREMENT_ACTION_CONST, (state, action) => ({ ...state, counter: state.counter - action.value}))
+    on(actions.CUSTOM_DECREMENT_ACTION_CONST, (state, action) => ({ ...state, counter: state.counter - action.value})),
+
+    on(actions.CHANNEL_NAME_ACTION_CONST, (state, action) => ({ ...state, channelName: action.channelName}))
    
 );
 
