@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="my-3">
+            <!-- This is without using ngrx -->
+            <!-- 
+                <app-counter-output [SetCounter]="counter"></app-counter-output>
+             -->
+             <app-counter-output></app-counter-output>
+        </div>
+    </div>
+    <div class="my-3">
+        <!-- This is without using ngrx -->
+        <!--       
+            <app-counter-btns (changeCounter)="updateCounter($event)"></app-counter-btns>
+        -->
+        <!-- with ngrx -->
+        <app-counter-btns></app-counter-btns>
+    </div>
+    <div class="my-3">
+        <app-custom-input-counter></app-custom-input-counter>
+    </div>
+</div>
