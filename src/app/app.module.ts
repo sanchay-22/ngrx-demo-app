@@ -11,6 +11,7 @@ import { counterReducer } from './counter/state/counter.reducer';
 import { CustomInputCounterComponent } from './counter/custom-input-counter/custom-input-counter.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     CounterBtnsComponent,
     CounterOutputComponent,
     CustomInputCounterComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
