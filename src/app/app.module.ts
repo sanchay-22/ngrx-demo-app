@@ -12,6 +12,7 @@ import { CustomInputCounterComponent } from './counter/custom-input-counter/cust
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { PostListComponent } from './post/post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     CustomInputCounterComponent,
     HomeComponent,
     HeaderComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
