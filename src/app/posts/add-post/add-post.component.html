@@ -6,10 +6,12 @@
             <div class="mb-3">
                 <label for="">Title</label>
                 <input type="text" class="form-control" formControlName="title">
+                <div *ngIf="postForm.get('title')?.touched && postForm.get('title')?.invalid">{{ showErrors('title') }}</div>
             </div>
             <div class="mb-3">
                 <label for="">Description</label>
                 <textarea type="text" class="form-control" formControlName="description"></textarea> 
+                <div *ngIf="postForm.get('description')?.touched && postForm.get('description')?.invalid">{{ showErrors('description') }}</div>
             </div>
         </form>
     </div>

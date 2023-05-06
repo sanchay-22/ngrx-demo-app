@@ -24,4 +24,13 @@ export class AddPostComponent implements OnInit {
     console.log(this.postForm?.value);
   }
 
+  showErrors(formFieldName: string): string {
+    const formField = this.postForm.get(`${formFieldName}`);
+    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 5 characters length.` : '';
+    
+    return errors;
+  }
+
+  
+
 }
