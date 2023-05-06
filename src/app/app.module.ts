@@ -12,7 +12,7 @@ import { CustomInputCounterComponent } from './counter/custom-input-counter/cust
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { PostListComponent } from './post/post-list/post-list.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'environments/environment';
 import { appReducer } from './shared/store/app.state';
