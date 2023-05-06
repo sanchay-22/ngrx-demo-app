@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { INCREMENT_ACTION_CONST, DECREMENT_ACTION_CONST, RESET_ACTION_CONST } from '../state/counter.actions';
-import { CounterStateModel } from '../state/counter.state';
+import { AppStateModel } from 'src/app/shared/store/app.state';
 
 @Component({
   selector: 'app-counter-btns',
@@ -19,7 +19,7 @@ export class CounterBtnsComponent {
   */
 
   //This is using the ngrx
-  constructor(private store: Store<{ counter: CounterStateModel }>) {}
+  constructor(private store: Store<AppStateModel>) {}
   onClick(value: string) : void {
     const dispatchAction = (value === 'inc') ? INCREMENT_ACTION_CONST() : (value === 'dec') ? DECREMENT_ACTION_CONST() : RESET_ACTION_CONST();
     this.store.dispatch(dispatchAction);  }
