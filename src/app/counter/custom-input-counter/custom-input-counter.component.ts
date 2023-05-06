@@ -4,7 +4,7 @@ import { CHANNEL_NAME_ACTION_CONST, CUSTOM_DECREMENT_ACTION_CONST, CUSTOM_INCREM
 import { untilDestroyed } from '@ngneat/until-destroy';
 import { Observable, tap } from 'rxjs';
 import { CounterStateModel } from '../state/counter.state';
-import { CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
+import { GET_CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
 
 @Component({
   selector: 'app-custom-input-counter',
@@ -13,7 +13,7 @@ import { CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
 })
 export class CustomInputCounterComponent{
   inputValue!: number;
-  channel$: Observable<string> = this.store.select(CHANNEL_NAME_SELECTOR_COST);
+  channel$: Observable<string> = this.store.select(GET_CHANNEL_NAME_SELECTOR_COST);
 
   constructor(private store: Store<{counter: CounterStateModel}>) {}
 
