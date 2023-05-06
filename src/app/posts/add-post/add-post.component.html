@@ -2,18 +2,18 @@
     <div class="col-md-12">
         <h3>Add Post</h3>
         <hr>
-        <form action="">
+        <form action="" [formGroup]="postForm">
             <div class="mb-3">
                 <label for="">Title</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="title">
             </div>
             <div class="mb-3">
                 <label for="">Description</label>
-                <textarea type="text" class="form-control"></textarea> 
+                <textarea type="text" class="form-control" formControlName="description"></textarea> 
             </div>
         </form>
     </div>
     <div>
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" (click)="addPost()" [disabled]="postForm.invalid" class="btn btn-primary">Submit</button>
     </div>
 </div>

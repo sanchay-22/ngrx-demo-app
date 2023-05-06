@@ -9,7 +9,7 @@ import { CounterBtnsComponent } from './counter/counter-btns/counter-btns.compon
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 import { counterReducer } from './counter/state/counter.reducer';
 import { CustomInputCounterComponent } from './counter/custom-input-counter/custom-input-counter.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
@@ -34,6 +34,7 @@ import { AddPostComponent } from './posts/add-post/add-post.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       // retains last 25 states
