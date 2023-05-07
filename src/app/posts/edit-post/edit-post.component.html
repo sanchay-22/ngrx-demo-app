@@ -1,0 +1,21 @@
+<div class="row my-4">
+    <div class="col-md-12">
+        <h3>Add Post</h3>
+        <hr>
+        <form action="" [formGroup]="editForm">
+            <div class="mb-3">
+                <label for="">Title</label>
+                <input type="text" class="form-control" formControlName="title">
+                <div *ngIf="editForm.get('title')?.touched && editForm.get('title')?.invalid">{{ showErrors('title') }}</div>
+            </div>
+            <div class="mb-3">
+                <label for="">Description</label>
+                <textarea type="text" class="form-control" formControlName="description"></textarea> 
+                <div *ngIf="editForm.get('description')?.touched && editForm.get('description')?.invalid">{{ showErrors('description') }}</div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <button type="button" (click)="updatePost()" [disabled]="editForm.invalid" class="btn btn-primary">Save</button>
+    </div>
+</div>
