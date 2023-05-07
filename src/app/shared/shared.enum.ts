@@ -1,4 +1,5 @@
 export enum StateEnum {
     POST = 'post',
-    COUNTER = 'counter'
+    COUNTER = 'counter',
+    AUTH = 'auth'
 }

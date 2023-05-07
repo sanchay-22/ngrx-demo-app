@@ -24,8 +24,7 @@ initializeLoginForm(): void {
   });
 }
 
-
-  login(): void {
-    console.log('logged in ')
-  }
+login(): void {
+  console.log('logged in ')
+}
 }
