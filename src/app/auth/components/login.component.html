@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3>Login</h3>
+        <hr>
+        <form action="" [formGroup]="loginForm">
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" formControlName="password">
+            </div>
+            <div class="mb-3">
+               <button [disabled]="loginForm.invalid" class="btn btn-primary" (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
