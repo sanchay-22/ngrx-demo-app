@@ -4,6 +4,10 @@ import { Store } from '@ngrx/store';
 import { PostModel } from 'src/app/shared/models/shared.model';
 import { AppStateModel } from 'src/app/shared/store/app.state';
 import { ADD_POST_ACTION_CONST } from '../states/post.action';
+import { ActivatedRoute } from '@angular/router';
+import { selectPostById } from '../states/post.selectors';
+import { switchMap } from 'rxjs';
+import { untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-edit-post',
@@ -11,23 +15,34 @@ import { ADD_POST_ACTION_CONST } from '../states/post.action';
   styleUrls: ['./edit-post.component.css']
 })
 export class EditPostComponent implements OnInit{
-
   editForm!: FormGroup;
-
-  constructor(private store: Store<AppStateModel>){}
+  constructor(private store: Store<AppStateModel>, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.initializeForm();
+    this.initializer();
   }
 
-  initializeForm(): void {
+  initializer(): void {
+    this.activatedRoute.paramMap.pipe(untilDestroyed(this)).subscribe((params) => {
+      const postID = params.get('id') as string;
+      this.getPostByID(postID);
+    });
+  }
+
+  getPostByID(id: string): void {
+    this.store.select(selectPostById(id)).pipe(switchMap(async (data) => {
+      data && this.patchFormData(data);
+    }),untilDestroyed(this)).subscribe();              
+  }
+
+  patchFormData(data: PostModel): void {
     this.editForm = new FormGroup({
-      title: new FormControl(null,[Validators.required, Validators.minLength(5)]),
-      description: new FormControl(null, [Validators.required, Validators.minLength(5)])
+      title: new FormControl(data?.title,[Validators.required, Validators.minLength(5)]),
+      description: new FormControl(data?.description, [Validators.required, Validators.minLength(5)])
     })
   }
 
-  editPost(): void {
+  updatePost(): void {
     const { title, description } = this.editForm.value;
     const payload: PostModel = { title,description };
 

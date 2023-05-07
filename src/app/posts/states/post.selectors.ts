@@ -1,6 +1,9 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector, props } from '@ngrx/store';
 import { PostStateModel } from './post.state';
 
-const GET_POST_STATE_CONST = createFeatureSelector<PostStateModel>('posts');
+const getPostState = createFeatureSelector<PostStateModel>('posts');
 
-export const GET_POST_SELECTOR_CONST  = createSelector(GET_POST_STATE_CONST, (state) => state.posts);
+export const selectAllPosts  = createSelector(getPostState, (state) => state.posts);
+export const selectPostById = (id: any) => createSelector(getPostState, (state: PostStateModel) => {
+    return state.posts.find((post) => post.id === id);
+});

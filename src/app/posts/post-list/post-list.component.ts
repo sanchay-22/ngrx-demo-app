@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { PostModel } from 'src/app/shared/models/shared.model';
 import { AppStateModel } from 'src/app/shared/store/app.state';
-import { GET_POST_SELECTOR_CONST } from '../states/post.selectors';
+import { selectAllPosts } from '../states/post.selectors';
 
 @Component({
   selector: 'app-post-list',
@@ -11,7 +11,7 @@ import { GET_POST_SELECTOR_CONST } from '../states/post.selectors';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent {
-posts$: Observable<PostModel[]> = this.store.select(GET_POST_SELECTOR_CONST);
+posts$: Observable<PostModel[]> = this.store.select(selectAllPosts);
 
 constructor(private store: Store<AppStateModel>){}
 
