@@ -22,7 +22,8 @@
                         <td>{{post.title}}</td>
                         <td>{{post.description}}</td>
                         <td>
-                            <a href="#"[routerLink]="['edit', post.id]">Update</a>
+                            <a href="#"[routerLink]="['edit', post.id]">Update</a>&nbsp;
+                            <button class="btn btn-danger" (click)="deletePost(post.id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

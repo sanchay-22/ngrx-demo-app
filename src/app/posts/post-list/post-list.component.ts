@@ -15,4 +15,10 @@ posts$: Observable<PostModel[]> = this.store.select(selectAllPosts);
 
 constructor(private store: Store<AppStateModel>){}
 
+deletePost(id: any): void {
+  if(confirm('Are you sure, you want to delete')){
+    console.log('post deleted')
+  }
+}
+
 }
