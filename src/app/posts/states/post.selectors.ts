@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector, props } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PostStateModel } from './post.state';
 
 const getPostState = createFeatureSelector<PostStateModel>('posts');

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CHANNEL_NAME_ACTION_CONST, CUSTOM_DECREMENT_ACTION_CONST, CUSTOM_INCREMENT_ACTION_CONST } from '../state/counter.actions';
-import { untilDestroyed } from '@ngneat/until-destroy';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CounterStateModel } from '../state/counter.state';
 import { GET_CHANNEL_NAME_SELECTOR_COST } from '../state/counter.selectors';
 

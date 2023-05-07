@@ -1,8 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { POST_INITIAL_STATE_CONST } from './post.state';
 import * as postActions from './post.action'
-import { state } from '@angular/animations';
-import { retry } from 'rxjs';
 
 export const POST_REDUCER_CONST = createReducer(POST_INITIAL_STATE_CONST, 
     on(postActions.addPost, (state, action) => ({
