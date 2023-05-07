@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PostModel } from 'src/app/shared/models/shared.model';
 import { AppStateModel } from 'src/app/shared/store/app.state';
 import { selectAllPosts } from '../states/post.selectors';
+import { deletePost } from '../states/post.action';
 
 @Component({
   selector: 'app-post-list',
@@ -17,7 +18,7 @@ constructor(private store: Store<AppStateModel>){}
 
 deletePost(id: any): void {
   if(confirm('Are you sure, you want to delete')){
-    console.log('post deleted')
+    this.store.dispatch(deletePost({ id }));
   }
 }
 
