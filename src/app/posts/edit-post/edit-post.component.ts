@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { PostModel } from 'src/app/shared/models/shared.model';
 import { AppStateModel } from 'src/app/shared/store/app.state';
 import { updatePost } from '../states/post.action';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -20,7 +20,7 @@ export class EditPostComponent implements OnInit{
   editForm!: FormGroup;
   postID!: string;
 
-  constructor(private store: Store<AppStateModel>, private activatedRoute: ActivatedRoute){}
+  constructor(private store: Store<AppStateModel>, private activatedRoute: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     this.initializer();
@@ -51,6 +51,7 @@ export class EditPostComponent implements OnInit{
     const payload: PostModel = { id: this.postID, title, description };
   
     this.editForm.valid && this.store.dispatch(updatePost({ post: payload }));
+    this.router.navigate(['posts']);
   }
 
   showErrors(formFieldName: string): string {
