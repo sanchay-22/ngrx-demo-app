@@ -10,7 +10,6 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'environments/environment';
-import { appReducer } from './shared/store/app.state';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
 
@@ -28,7 +27,7 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     })
