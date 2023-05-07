@@ -2,17 +2,17 @@
     <div class="col-md-6 offset-md-3">
         <h3>Login</h3>
         <hr>
-        <form action="">
+        <form action="" [formGroup]="loginForm">
             <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="email">
             </div>
             <div class="mb-3">
                 <label for="password">Password</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="password">
             </div>
             <div class="mb-3">
-               <button class="btn btn-primary" (click)="login()">Login</button>
+               <button [disabled]="loginForm.invalid" class="btn btn-primary" (click)="login()">Login</button>
             </div>
         </form>
     </div>
