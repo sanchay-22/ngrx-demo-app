@@ -19,7 +19,6 @@ import { CustomInputCounterComponent } from './custom-input-counter/custom-input
   imports: [
     CommonModule,
     CounterRoutingModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
   ]

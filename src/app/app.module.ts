@@ -30,8 +30,6 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
-      // retains last 25 states
-      //maxAge: 25, 
       logOnly: environment.production,
     })
   ],
