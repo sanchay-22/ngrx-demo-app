@@ -5,6 +5,9 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './components/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StateEnum } from '../shared/shared.enum';
+import { authReducer } from './states/auth.reducers';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature(StateEnum.AUTH, authReducer)
   ]
 })
 export class AuthModule { }

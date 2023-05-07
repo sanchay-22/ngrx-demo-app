@@ -1,8 +1,8 @@
 import { createReducer } from '@ngrx/store';
-import { AuthIntialState, AuthState } from './auth.state';
+import { AUTH_INITAL_STATE_CONST , AuthState } from './auth.state';
 
-const authReducer = createReducer(AuthIntialState);
+const AUTH_REDUCER_CONST = createReducer(AUTH_INITAL_STATE_CONST);
 
-export function AuthReducer(state: AuthState, action: any) {
-    return authReducer(state, action);
+export function authReducer(state: AuthState, action: any) {
+    return AUTH_REDUCER_CONST(state, action);
 }

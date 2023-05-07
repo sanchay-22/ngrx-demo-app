@@ -2,6 +2,6 @@ export interface AuthState {
 
 }
 
-export const AuthIntialState: AuthState = {
-    
+export const AUTH_INITAL_STATE_CONST: AuthState = {
+
 }
