@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'counter',
-    component: CounterComponent
+    loadChildren: () => import('./counter/counter.module').then(m => m.CounterModule)
   },
   {
     path: 'posts',
