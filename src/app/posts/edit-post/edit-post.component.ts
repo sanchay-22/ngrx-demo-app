@@ -18,6 +18,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class EditPostComponent implements OnInit{
   editForm!: FormGroup;
+  postID!: string;
+
   constructor(private store: Store<AppStateModel>, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -26,8 +28,8 @@ export class EditPostComponent implements OnInit{
 
   initializer(): void {
     this.activatedRoute.paramMap.pipe(untilDestroyed(this)).subscribe((params) => {
-      const postID = params.get('id') as string;
-      this.getPostByID(postID);
+      this.postID = params.get('id') as string;
+      this.getPostByID(this.postID);
     });
   }
 
@@ -46,8 +48,8 @@ export class EditPostComponent implements OnInit{
 
   updatePost(): void {
     const { title, description } = this.editForm.value;
-    const payload: PostModel = { title,description };
-
+    const payload: PostModel = { id: this.postID, title, description };
+  
     this.editForm.valid && this.store.dispatch(updatePost({ post: payload }));
   }
 
