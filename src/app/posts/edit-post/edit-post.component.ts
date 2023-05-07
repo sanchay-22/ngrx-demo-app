@@ -7,7 +7,9 @@ import { updatePost } from '../states/post.action';
 import { ActivatedRoute } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
-import { untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+
+@UntilDestroy()
 
 @Component({
   selector: 'app-edit-post',
@@ -46,7 +48,7 @@ export class EditPostComponent implements OnInit{
     const { title, description } = this.editForm.value;
     const payload: PostModel = { title,description };
 
-    this.editForm.valid && this.store.dispatch(ADD_POST_ACTION_CONST({ post: payload }));
+    this.editForm.valid && this.store.dispatch(updatePost({ post: payload }));
   }
 
   showErrors(formFieldName: string): string {

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppStateModel } from 'src/app/shared/store/app.state';
-import { ADD_POST_ACTION_CONST } from '../states/post.action';
+import { addPost } from '../states/post.action';
 import { PostModel } from 'src/app/shared/models/shared.model';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -30,7 +32,7 @@ export class AddPostComponent implements OnInit {
     const { title, description } = this.postForm.value;
     const payload: PostModel = { title,description };
 
-    this.postForm.valid && this.store.dispatch(ADD_POST_ACTION_CONST({ post: payload }));
+    this.postForm.valid && this.store.dispatch(addPost({ post: payload }));
   }
 
   showErrors(formFieldName: string): string {
@@ -39,7 +41,4 @@ export class AddPostComponent implements OnInit {
     
     return errors;
   }
-
-  
-
 }
