@@ -10,6 +10,7 @@ import { CounterComponent } from './counter/counter.component';
 import { CustomInputCounterComponent } from './custom-input-counter/custom-input-counter.component';
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './state/counter.reducer';
+import { StateEnum } from '../shared/shared.enum';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { counterReducer } from './state/counter.reducer';
     CounterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('counter', counterReducer)
+    StoreModule.forFeature(StateEnum.COUNTER, counterReducer)
   ]
 })
 export class CounterModule { }

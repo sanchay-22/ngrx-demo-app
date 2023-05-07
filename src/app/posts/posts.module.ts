@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PostsRoutingModule } from './posts-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { postReducer } from './states/post.reducer';
+import { StateEnum } from '../shared/shared.enum';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { postReducer } from './states/post.reducer';
   imports: [
     CommonModule,
     PostsRoutingModule,
-    StoreModule.forFeature('post', postReducer)
+    StoreModule.forFeature(StateEnum.POST, postReducer)
 
   ]
 })
