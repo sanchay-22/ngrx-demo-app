@@ -12,6 +12,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'environments/environment';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     AppRoutingModule,
     ReactiveFormsModule,
     StoreModule.forRoot({}),
+    EffectsModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     })
