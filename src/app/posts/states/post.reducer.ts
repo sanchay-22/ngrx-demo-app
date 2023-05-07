@@ -3,7 +3,7 @@ import { POST_INITIAL_STATE_CONST } from './post.state';
 import * as postActions from './post.action'
 
 export const POST_REDUCER_CONST = createReducer(POST_INITIAL_STATE_CONST, 
-    on(postActions.ADD_POST_ACTION_CONST, (state, action) => {
+    on(postActions.addPost, (state, action) => {
         let post = { ...action.post };
         post.id = (state.posts.length + 1).toString();
 

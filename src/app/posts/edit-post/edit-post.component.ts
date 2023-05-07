@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { PostModel } from 'src/app/shared/models/shared.model';
 import { AppStateModel } from 'src/app/shared/store/app.state';
-import { ADD_POST_ACTION_CONST } from '../states/post.action';
+import { updatePost } from '../states/post.action';
 import { ActivatedRoute } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
