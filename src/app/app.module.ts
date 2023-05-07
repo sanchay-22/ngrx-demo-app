@@ -4,11 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { CounterComponent } from './counter/counter/counter.component';
-import { CounterBtnsComponent } from './counter/counter-btns/counter-btns.component';
-import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
-import { counterReducer } from './counter/state/counter.reducer';
-import { CustomInputCounterComponent } from './counter/custom-input-counter/custom-input-counter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -22,10 +17,6 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent,
-    CounterBtnsComponent,
-    CounterOutputComponent,
-    CustomInputCounterComponent,
     HomeComponent,
     HeaderComponent,
     PostListComponent,
@@ -39,8 +30,6 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     ReactiveFormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
-      // retains last 25 states
-      //maxAge: 25, 
       logOnly: environment.production,
     })
   ],
