@@ -5,20 +5,23 @@ import { map, switchMap } from 'rxjs';
 import { AuthApiService } from '../auth-api.service';
 import { AuthBlService } from '../auth-bl.service';
 import { AuthResponseDataModel } from '../models/auth.model';
+import { Store } from '@ngrx/store';
+import { AppStateModel } from 'src/app/shared/shared.state';
+import { setLoaderAction } from 'src/app/shared/shared.actions';
+import { getLoaderState } from 'src/app/shared/shared.selectors';
 
 @Injectable()
 export class AuthEffects {
-    constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService) {}
+    constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService, private store: Store<AppStateModel>) {}
 
     login$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(login),
             switchMap(( action ) => this.authApiService.login(action.email, action.password)),
             map((response: AuthResponseDataModel) => {
+                this.store.dispatch(setLoaderAction({ status: false }));
                 const user = this.authBlService.formatLoginResponseData(response);
-                console.log(user);
                 return loginSuccess({ user });
-
             })
          )
     });
