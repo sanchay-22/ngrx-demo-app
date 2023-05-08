@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { PostModel } from 'src/app/shared/shared.model';
-import { AppStateModel } from 'src/app/shared/store/app.state';
 import { updatePost } from '../states/post.action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AppStateModel } from 'src/app/shared/shared.state';
 
 @UntilDestroy()
 

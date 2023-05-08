@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { GET_COUNTER_SELECTOR_CONST } from '../state/counter.selectors';
 import { Observable } from 'rxjs';
-import { AppStateModel } from 'src/app/shared/store/app.state';
+import { AppStateModel } from 'src/app/shared/shared.state';
 
 @Component({
   selector: 'app-counter-output',
