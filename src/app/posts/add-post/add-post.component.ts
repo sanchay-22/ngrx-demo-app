@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppStateModel } from 'src/app/shared/store/app.state';
 import { addPost } from '../states/post.action';
-import { PostModel } from 'src/app/shared/models/shared.model';
+import { PostModel } from 'src/app/shared/shared.model';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()

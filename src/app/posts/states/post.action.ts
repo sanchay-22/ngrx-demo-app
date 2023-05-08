@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { PostModel } from "src/app/shared/models/shared.model";
+import { PostModel } from 'src/app/shared/shared.model';
 
 export const POST_KEY_CONST = 'posts:';
 
