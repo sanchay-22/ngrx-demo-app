@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { login, loginSuccess } from './auth.actions';
 import { map, switchMap } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { AuthApiService } from '../authApi.service';
 
 @Injectable()
 export class AuthEffects {
-    constructor(private actions$: Actions, private authService: AuthService) {}
+    constructor(private actions$: Actions, private authApiService: AuthApiService) {}
 
     login$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(login),
-            switchMap(( action ) => this.authService.login(action.email, action.password)),
+            switchMap(( action ) => this.authApiService.login(action.email, action.password)),
             map(data => loginSuccess())
          )
     });
