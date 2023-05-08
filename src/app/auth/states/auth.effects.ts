@@ -19,7 +19,7 @@ export class AuthEffects {
             ofType(login),
             switchMap(( action ) => this.authApiService.login(action.email, action.password)),
             map((response: AuthResponseDataModel) => {
-                this.store.dispatch(setLoaderAction({ status: false }));
+                this.store.dispatch(setLoaderAction({ loadingStatus: false }));
                 const user = this.authBlService.formatLoginResponseData(response);
                 return loginSuccess({ user });
             })

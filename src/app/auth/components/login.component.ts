@@ -32,7 +32,7 @@ initializeLoginForm(): void {
 }
 
 login(): void {
-  this.store.dispatch(setLoaderAction({ status: true }));//dispatching the action to set the status of loader true
+  this.store.dispatch(setLoaderAction({ loadingStatus: true }));//dispatching the action to set the status of loader true
   const { email, password } = this.loginForm.value;
   this.store.dispatch(login({ email, password }));//dispatching the action to login
 }

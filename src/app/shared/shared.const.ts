@@ -1,6 +1,6 @@
 import { ApiState } from './shared.model';
 
-export const LOADER_INTIAL_STATE_CONST: ApiState = {
+export const API_INTIAL_STATE_CONST: ApiState = {
     loadingStatus: false,
     errorMessage: '',
 }
