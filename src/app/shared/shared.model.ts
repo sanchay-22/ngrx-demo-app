@@ -3,3 +3,7 @@ export interface PostModel {
     title: string;
     description: string;
 }
+
+export interface LoaderState {
+    loadingStatus: boolean;
+}

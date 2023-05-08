@@ -12,6 +12,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'environments/environment';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './shared/components/loading/loading.component'; 
+import { appReducer } from './shared/shared.state';
 
 @NgModule({
   declarations: [
@@ -21,16 +25,19 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     PostListComponent,
     AddPostComponent,
     EditPostComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
-    })
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { PostModel } from 'src/app/shared/models/shared.model';
-import { AppStateModel } from 'src/app/shared/store/app.state';
 import { selectAllPosts } from '../states/post.selectors';
 import { deletePost } from '../states/post.action';
+import { PostModel } from 'src/app/shared/shared.model';
+import { AppStateModel } from 'src/app/shared/shared.state';
 
 @Component({
   selector: 'app-post-list',
