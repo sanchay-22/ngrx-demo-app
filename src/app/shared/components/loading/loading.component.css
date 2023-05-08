@@ -1,8 +1,9 @@
-.custom-align {
+.spinner-align {
     position: fixed;
     left: 50%;
     top: 25%;
     z-index: 99;
+    color: white;
 }
 
 .back-drop {
