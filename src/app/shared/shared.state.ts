@@ -1,14 +1,13 @@
-import { counterReducer } from 'src/app/counter/state/counter.reducer';
-import { CounterStateModel } from 'src/app/counter/state/counter.state';
-import { postReducer } from 'src/app/posts/states/post.reducer';
-import { PostStateModel } from 'src/app/posts/states/post.state';
+import { LoaderState } from './shared.model';
+import { StateEnum } from './shared.enum';
+import { loaderReducer } from './shared.reducer';
+
+
 
 export interface AppStateModel {
-    counter: CounterStateModel;
-    posts: PostStateModel;
+    [StateEnum.LOADER]: LoaderState;
 }
 
 export const appReducer = {
-    counter: counterReducer,
-    posts: postReducer
+   [StateEnum.LOADER]: loaderReducer
 }

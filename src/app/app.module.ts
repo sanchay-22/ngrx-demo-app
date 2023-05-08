@@ -15,6 +15,7 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/components/loading/loading.component'; 
+import { appReducer } from './shared/shared.state';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot({}),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
