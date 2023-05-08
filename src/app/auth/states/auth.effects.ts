@@ -17,7 +17,7 @@ export class AuthEffects {
             map((response: AuthResponseDataModel) => {
                 const user = this.authBlService.formatLoginResponseData(response);
                 console.log(user);
-                return loginSuccess();
+                return loginSuccess({ user });
 
             })
          )
