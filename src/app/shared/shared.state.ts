@@ -5,9 +5,9 @@ import { loaderReducer } from './shared.reducer';
 
 
 export interface AppStateModel {
-    [StateEnum.LOADER]: ApiState;
+    [StateEnum.LOADER_STATE]: ApiState;
 }
 
 export const appReducer = {
-   [StateEnum.LOADER]: loaderReducer
+   [StateEnum.LOADER_STATE]: loaderReducer
 }

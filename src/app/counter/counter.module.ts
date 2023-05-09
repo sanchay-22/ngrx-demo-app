@@ -24,7 +24,7 @@ import { StateEnum } from '../shared/shared.enum';
     CounterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(StateEnum.COUNTER, counterReducer)
+    StoreModule.forFeature(StateEnum.COUNTER_STATE, counterReducer)
   ]
 })
 export class CounterModule { }
