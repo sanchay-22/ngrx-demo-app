@@ -23,24 +23,26 @@ export class AuthEffects implements OnInit {
         this.store.select(getErrorMessageState).pipe(untilDestroyed(this)).subscribe(data => this.errorMessage = data);
     }
 
-    login$ = createEffect(() => {
-        return this.actions$.pipe(untilDestroyed(this),
-            ofType(login),
-            switchMap(( action ) => this.authApiService.login(action.email, action.password)),
-            map((response: AuthResponseDataModel) => {
-                this.store.dispatch(setLoaderAction({ loadingStatus: false }));
-                if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
-                const user = this.authBlService.formatLoginResponseData(response);
-                return loginSucceed({ user }); 
-            }),
-            catchError(error => {
-                this.store.dispatch(setLoaderAction({ loadingStatus: false }));
-                const errorMessage = this.authBlService.formatLoginErrorMessage(error.error.error.message);
-                this.store.dispatch(setErrorMessageAction({ errorMessage }));
-                return of(); 
-            })
-        );
-    });
+    login$ = createEffect(() => this.actions$.pipe(untilDestroyed(this),
+       ofType(login),
+       switchMap(( action ) => this.authApiService.login(action.email, action.password)),
+       tap(() => {
+            this.store.dispatch(setLoaderAction({ loadingStatus: false }));
+            if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
+       }),
+       map((response: AuthResponseDataModel) => {
+            const user = this.authBlService.formatLoginResponseData(response);
+
+            return loginSucceed({ user });
+        }),
+        catchError(error => {
+            this.store.dispatch(setLoaderAction({ loadingStatus: false }));
+            const errorMessage = this.authBlService.formatLoginErrorMessage(error.error.error.message);
+            this.store.dispatch(setErrorMessageAction({ errorMessage }));
+
+            return of();
+        })
+    ));
 
     navigateOnLoginSucceed$ = createEffect(()=> this.actions$.pipe(
         ofType(loginSucceed),
