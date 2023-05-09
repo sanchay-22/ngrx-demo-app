@@ -3,3 +3,8 @@ export interface PostModel {
     title: string;
     description: string;
 }
+
+export interface SharedApiState {
+    loadingStatus: boolean;
+    errorMessage: string;
+}

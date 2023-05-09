@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppStateModel } from 'src/app/shared/store/app.state';
 import { addPost } from '../states/post.action';
-import { PostModel } from 'src/app/shared/models/shared.model';
+import { PostModel } from 'src/app/shared/shared.model';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { AppState } from 'src/app/shared/shared.state';
 
 @UntilDestroy()
 @Component({
@@ -15,7 +15,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 export class AddPostComponent implements OnInit {
   postForm!: FormGroup;
 
-  constructor(private store: Store<AppStateModel>){}
+  constructor(private store: Store<AppState>){}
 
   ngOnInit(): void {
     this.initializeForm();

@@ -1,4 +1,6 @@
 export enum StateEnum {
-    POST = 'post',
-    COUNTER = 'counter'
+    POST_STATE = 'postState',
+    COUNTER_STATE = 'counterState',
+    AUTH_STATE = 'authState',
+    LOADER_STATE = 'loaderState'
 }
