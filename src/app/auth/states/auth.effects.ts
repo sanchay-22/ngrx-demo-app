@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { login, loginSuccess } from './auth.actions';
+import { login, loginSucceed } from './auth.actions';
 import { map, switchMap, catchError, of } from 'rxjs';
 import { AuthApiService } from '../auth-api.service';
 import { AuthBlService } from '../auth-bl.service';
@@ -23,7 +23,7 @@ export class AuthEffects {
                 this.store.dispatch(setLoaderAction({ loadingStatus: false }));
                 this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
                 const user = this.authBlService.formatLoginResponseData(response);
-                return loginSuccess({ user }); 
+                return loginSucceed({ user }); 
             }),
             catchError(error => {
                 this.store.dispatch(setLoaderAction({ loadingStatus: false }));
