@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { addPost } from '../states/post.action';
 import { PostModel } from 'src/app/shared/shared.model';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { AppStateModel } from 'src/app/shared/shared.state';
+import { AppState } from 'src/app/shared/shared.state';
 
 @UntilDestroy()
 @Component({
@@ -15,7 +15,7 @@ import { AppStateModel } from 'src/app/shared/shared.state';
 export class AddPostComponent implements OnInit {
   postForm!: FormGroup;
 
-  constructor(private store: Store<AppStateModel>){}
+  constructor(private store: Store<AppState>){}
 
   ngOnInit(): void {
     this.initializeForm();

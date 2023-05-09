@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { selectAllPosts } from '../states/post.selectors';
 import { deletePost } from '../states/post.action';
 import { PostModel } from 'src/app/shared/shared.model';
-import { AppStateModel } from 'src/app/shared/shared.state';
+import { AppState } from 'src/app/shared/shared.state';
 
 @Component({
   selector: 'app-post-list',
@@ -14,7 +14,7 @@ import { AppStateModel } from 'src/app/shared/shared.state';
 export class PostListComponent {
 posts$: Observable<PostModel[]> = this.store.select(selectAllPosts);
 
-constructor(private store: Store<AppStateModel>){}
+constructor(private store: Store<AppState>){}
 
 deletePost(id: any): void {
   if(confirm('Are you sure, you want to delete')){

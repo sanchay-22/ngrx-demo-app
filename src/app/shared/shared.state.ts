@@ -1,13 +1,18 @@
-import { ApiState } from './shared.model';
+import { SharedApiState } from './shared.model';
 import { StateEnum } from './shared.enum';
-import { loaderReducer } from './shared.reducer';
+import {sharedApiReducer } from './shared.reducer';
+import { AuthState } from '../auth/states/auth.state';
+import { authReducer } from '../auth/states/auth.reducers';
+import { ActionReducerMap } from '@ngrx/store';
 
 
 
-export interface AppStateModel {
-    [StateEnum.LOADER_STATE]: ApiState;
+export interface AppState {
+    [StateEnum.LOADER_STATE]: SharedApiState;
+    [StateEnum.AUTH_STATE]: AuthState
 }
 
-export const appReducer = {
-   [StateEnum.LOADER_STATE]: loaderReducer
-}
+export const appReducer: ActionReducerMap<any> = {
+    loaderState: sharedApiReducer,
+    authState: authReducer
+};

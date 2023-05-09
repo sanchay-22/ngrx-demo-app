@@ -4,7 +4,7 @@ export interface PostModel {
     description: string;
 }
 
-export interface ApiState {
+export interface SharedApiState {
     loadingStatus: boolean;
     errorMessage: string;
 }
