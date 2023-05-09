@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthResponseDataModel, UserModel } from './models/auth.model';
+import { ErrorEnum, ErrorMessageEnum } from './misc/auth.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,10 @@ export class AuthBlService {
 
   formatTokenExpirationData(expirationDate: string): Date {
     return new Date(new Date().getTime() + +expirationDate * 1000);
+  }
+
+  formatLoginErrorMessage(message: string): string {
+    const errorMessage = (message === ErrorEnum.EMAIL_NOT_FOUND) ? ErrorMessageEnum.EMAIL_NOT_FOUND : (message === ErrorEnum.INVALID_PASSWORD) ? ErrorMessageEnum.INVALID_PASSWORD : ErrorMessageEnum.OTHER;
+    return errorMessage;
   }
 }

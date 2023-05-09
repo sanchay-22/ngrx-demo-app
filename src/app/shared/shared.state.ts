@@ -1,11 +1,11 @@
-import { LoaderState } from './shared.model';
+import { ApiState } from './shared.model';
 import { StateEnum } from './shared.enum';
 import { loaderReducer } from './shared.reducer';
 
 
 
 export interface AppStateModel {
-    [StateEnum.LOADER]: LoaderState;
+    [StateEnum.LOADER]: ApiState;
 }
 
 export const appReducer = {

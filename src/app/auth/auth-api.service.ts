@@ -13,7 +13,7 @@ export class AuthApiService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<AuthResponseDataModel> {
-    return this.http.post<AuthResponseDataModel>(this.apiEndPoint, { email, password, returnSecureToken: true } );
+    return this.http.post<AuthResponseDataModel>(this.apiEndPoint, { email, password, returnSecureToken: true });
   }
 
 }
