@@ -12,7 +12,7 @@ import { StateEnum } from '../shared/shared.enum';
   imports: [
     CommonModule,
     PostsRoutingModule,
-    StoreModule.forFeature(StateEnum.POST, postReducer)
+    StoreModule.forFeature(StateEnum.POST_STATE, postReducer)
 
   ]
 })

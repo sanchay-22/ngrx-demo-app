@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppStateModel } from './shared/shared.state';
+import { AppState } from './shared/shared.state';
 import { getErrorMessageState, getLoaderState } from './shared/shared.selectors';
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   showLoader$!: Observable<boolean>; //= this.store.select(getLoaderState);
   errorMessage$!: Observable<string> ; //= this.store.select(getErrorMessageState);
 
-  constructor(private store: Store<AppStateModel>) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.showLoader$ = this.store.select(getLoaderState);
