@@ -32,5 +32,5 @@ export class AuthEffects {
                 return of(); 
             })
         );
-    }).subscribe();
+    });
 }
