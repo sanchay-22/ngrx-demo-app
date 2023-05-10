@@ -10,7 +10,7 @@ export class AuthBlService {
 
   constructor() { }
 
-  formatLoginResponseData(data: AuthResponseDataModel): UserModel {
+  formatResponseData(data: AuthResponseDataModel): UserModel {
     const { email, idToken, localId, expiresIn } = data;
     const user = new UserModel(email, idToken, localId, this.formatTokenExpirationData(expiresIn)); 
     return user;

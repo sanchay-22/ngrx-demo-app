@@ -31,17 +31,13 @@ export class AuthEffects implements OnInit {
             if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
        }),
        map((response: AuthResponseDataModel) => {
-            const user = this.authBlService.formatLoginResponseData(response);
-
+            const user = this.authBlService.formatResponseData(response);
             return setLoginSucceedAction({ user });
         }),
         catchError(error => this.catchError(error))
     ));
 
-    navigateOnLoginSucceed$ = createEffect(()=> this.actions$.pipe(
-        ofType(setLoginSucceedAction),
-        tap(() => this.router.navigate(['/']))),
-    { dispatch: false });
+
 
     signUp$ = createEffect(() => this.actions$.pipe(untilDestroyed(this),
         ofType(setSignUpAction),
@@ -51,7 +47,7 @@ export class AuthEffects implements OnInit {
             if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
         }),
         map((response: AuthResponseDataModel) => {
-            const user = this.authBlService.formatLoginResponseData(response);
+            const user = this.authBlService.formatResponseData(response);
 
             return setSignUpSucceedAction({ user });
         }),
@@ -65,4 +61,9 @@ export class AuthEffects implements OnInit {
 
         return of();
     }
+
+    navigateOnSucceessfulLoginSignup$ = createEffect(()=> this.actions$.pipe(
+        ofType(setLoginSucceedAction || setSignUpSucceedAction),
+        tap(() => this.router.navigate(['/']))),{ dispatch: false }
+    );
 }
