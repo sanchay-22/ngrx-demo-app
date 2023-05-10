@@ -15,7 +15,7 @@ export class AuthService {
     this.startTimeoutInterval(user);
   }
 
-  getUserFromLocalStorage(): UserModel | null {
+  getUserFromLocalStorage(): any {
     const userRawData = localStorage.getItem('userData');
     if(userRawData) {
       const user = JSON.parse(userRawData);

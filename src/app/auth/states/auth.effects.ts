@@ -55,7 +55,10 @@ export class AuthEffects implements OnInit {
     autoLogin$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(setAutoLoginAction),
-            tap((action) => console.log(this.authService.getUserFromLocalStorage()))
-        );
-    }, { dispatch: false });
+            switchMap((action) => {
+                const user = this.authService.getUserFromLocalStorage();
+                return of(setLoginSucceedAction({ user }))
+            })) 
+        }
+    )
 }
