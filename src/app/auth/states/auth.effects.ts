@@ -48,7 +48,6 @@ export class AuthEffects implements OnInit {
         }),
         map((response: AuthResponseDataModel) => {
             const user = this.authBlService.formatResponseData(response);
-
             return setSignUpSucceedAction({ user });
         }),
         catchError(error => this.catchError(error))
@@ -63,7 +62,7 @@ export class AuthEffects implements OnInit {
     }
 
     navigateOnSucceessfulLoginSignup$ = createEffect(()=> this.actions$.pipe(
-        ofType(setLoginSucceedAction || setSignUpSucceedAction),
+        ofType(setSignUpSucceedAction, setLoginSucceedAction),
         tap(() => this.router.navigate(['/']))),{ dispatch: false }
     );
 }
