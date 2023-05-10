@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './shared/shared.state';
 import { getErrorMessageState, getLoaderState } from './shared/shared.selectors';
+import { setAutoLoginAction } from './auth/states/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +12,12 @@ import { getErrorMessageState, getLoaderState } from './shared/shared.selectors'
 })
 export class AppComponent implements OnInit{
   title = 'NGRX-DemoApp';
-  showLoader$!: Observable<boolean>; //= this.store.select(getLoaderState);
-  errorMessage$!: Observable<string> ; //= this.store.select(getErrorMessageState);
+  showLoader$: Observable<boolean> = this.store.select(getLoaderState);
+  errorMessage$: Observable<string> = this.store.select(getErrorMessageState);
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.showLoader$ = this.store.select(getLoaderState);
-    this.errorMessage$ = this.store.select(getErrorMessageState);
+    this.store.dispatch(setAutoLoginAction()); //dispatching the action
   }
-
 }
