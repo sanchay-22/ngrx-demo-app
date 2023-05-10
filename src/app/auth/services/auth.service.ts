@@ -11,7 +11,7 @@ import { setAutoLogoutAction } from '../states/auth.actions';
 export class AuthService {
   timeoutInterval!: any;
 
-  constructor(private authBlService: AuthBlService, private store: Store<AppState> ) { }
+  constructor(private authBlService: AuthBlService, private store: Store<AppState>) { }
 
   setUserInLocalStorage(user: UserModel): void {
     localStorage.setItem('userData', JSON.stringify(user));
@@ -21,7 +21,9 @@ export class AuthService {
   getUserFromLocalStorage(): any {
     const userRawData = localStorage.getItem('userData');
     if(userRawData) {
-      const user = JSON.parse(userRawData);
+      const userParseData = JSON.parse(userRawData);
+      const { email, localId, token, tokenExp } = userParseData;
+      const user = new UserModel(email, token, localId, tokenExp)
       this.startTimeoutInterval(user);
       return user;
     }
@@ -30,7 +32,6 @@ export class AuthService {
 
   startTimeoutInterval(user: UserModel): void {
     const timeInterval = this.authBlService.getTimeInterval(user);
-
     this.timeoutInterval = setTimeout(() => { this.store.dispatch(setAutoLogoutAction()) }, timeInterval);
   }
 

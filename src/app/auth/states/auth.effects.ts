@@ -34,7 +34,7 @@ export class AuthEffects implements OnInit {
    map((response: AuthResponseDataModel) => {
         const user = this.authBlService.formatResponseData(response);
         this.authService.setUserInLocalStorage(user);
-        return setLoginSucceedAction({ user });
+        return setLoginSucceedAction({ user, redirectToHome: true });
     }),
     catchError(error => this.catchError(error))
    ));
@@ -49,14 +49,14 @@ export class AuthEffects implements OnInit {
 
     navigateOnSucceessfulLoginSignup$ = createEffect(()=> this.actions$.pipe(
         ofType(setSignUpSucceedAction, setLoginSucceedAction),
-        tap(() => this.router.navigate(['/']))),{ dispatch: false }
+        tap((action) => {if(action.redirectToHome) this.router.navigate(['/'])})),{ dispatch: false }
     );
 
     autoLogin$ = createEffect(() => (this.actions$.pipe(
             ofType(setAutoLoginAction),
-            switchMap((action) => {
+            switchMap(() => {
                 const user = this.authService.getUserFromLocalStorage();
-                return of(setLoginSucceedAction({ user }))
+                return of(setLoginSucceedAction({ user, redirectToHome: false }))
             })) 
         )
     )
