@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  timeoutInterval!: any;
 
   constructor(private authBlService: AuthBlService) { }
 
@@ -28,6 +29,14 @@ export class AuthService {
   startTimeoutInterval(user: UserModel): void {
     const tokenExpTime = this.authBlService.getTokenExpirationTime(user);
 
-    setTimeout(() => { },tokenExpTime);
+    this.timeoutInterval = setTimeout(() => { },tokenExpTime);
+  }
+
+  clearLocalStorage(): void {
+    localStorage.removeItem('userData');
+    if(this.timeoutInterval) {
+      clearInterval(this.timeoutInterval);
+      this.timeoutInterval = null;
+    }
   }
 }
