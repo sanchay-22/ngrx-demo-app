@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { login, loginSucceed } from './auth.actions';
 import { map, switchMap, catchError, of, tap } from 'rxjs';
 import { AuthApiService } from '../auth-api.service';
 import { AuthBlService } from '../auth-bl.service';
@@ -11,6 +10,7 @@ import { setErrorMessageAction, setLoaderAction } from 'src/app/shared/shared.ac
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getErrorMessageState } from 'src/app/shared/shared.selectors';
 import { Router } from '@angular/router';
+import { setLoginAction, setLoginSucceedAction } from './auth.actions';
 
 @UntilDestroy()
 @Injectable()
@@ -24,7 +24,7 @@ export class AuthEffects implements OnInit {
     }
 
     login$ = createEffect(() => this.actions$.pipe(untilDestroyed(this),
-       ofType(login),
+       ofType(setLoginAction),
        switchMap(( action ) => this.authApiService.login(action.email, action.password)),
        tap(() => {
             this.store.dispatch(setLoaderAction({ loadingStatus: false }));
@@ -33,7 +33,7 @@ export class AuthEffects implements OnInit {
        map((response: AuthResponseDataModel) => {
             const user = this.authBlService.formatLoginResponseData(response);
 
-            return loginSucceed({ user });
+            return setLoginSucceedAction({ user });
         }),
         catchError(error => {
             this.store.dispatch(setLoaderAction({ loadingStatus: false }));
@@ -45,7 +45,7 @@ export class AuthEffects implements OnInit {
     ));
 
     navigateOnLoginSucceed$ = createEffect(()=> this.actions$.pipe(
-        ofType(loginSucceed),
+        ofType(setLoginSucceedAction),
         tap(() => this.router.navigate(['/']))
     ), { dispatch: false }
     );
