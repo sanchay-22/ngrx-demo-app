@@ -23,35 +23,19 @@ export class AuthEffects implements OnInit {
         this.store.select(getErrorMessageState).pipe(untilDestroyed(this)).subscribe(data => this.errorMessage = data);
     }
 
-    login$ = createEffect(() => this.actions$.pipe(untilDestroyed(this),
-       ofType(setLoginAction),
-       switchMap(( action ) => this.authApiService.login(action.email, action.password)),
-       tap(() => {
-            this.store.dispatch(setLoaderAction({ loadingStatus: false }));
-            if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
-       }),
-       map((response: AuthResponseDataModel) => {
-            const user = this.authBlService.formatResponseData(response);
-            return setLoginSucceedAction({ user });
-        }),
-        catchError(error => this.catchError(error))
-    ));
-
-
-
-    signUp$ = createEffect(() => this.actions$.pipe(untilDestroyed(this),
-        ofType(setSignUpAction),
-        switchMap(( action ) => this.authApiService.signup(action.email, action.password)),
-        tap(() => {
-            this.store.dispatch(setLoaderAction({ loadingStatus: false }));
-            if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
-        }),
-        map((response: AuthResponseDataModel) => {
-            const user = this.authBlService.formatResponseData(response);
-            return setSignUpSucceedAction({ user });
-        }),
-        catchError(error => this.catchError(error))
-    ));
+   auth$ = createEffect(()=> this.actions$.pipe(
+    ofType(setLoginAction, setSignUpAction),
+    switchMap((action) => (action.type === setLoginAction.type) ? this.authApiService.login(action.email, action.password) : this.authApiService.signup(action.email, action.password)),
+    tap(() => {
+        this.store.dispatch(setLoaderAction({ loadingStatus: false }));
+        if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
+   }),
+   map((response: AuthResponseDataModel) => {
+        const user = this.authBlService.formatResponseData(response);
+        return setLoginSucceedAction({ user });
+    }),
+    catchError(error => this.catchError(error))
+   ));
     
     catchError(error: any): Observable<any>{
         this.store.dispatch(setLoaderAction({ loadingStatus: false }));
