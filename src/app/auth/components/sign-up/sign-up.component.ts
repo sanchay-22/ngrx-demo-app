@@ -25,7 +25,9 @@ export class SignUpComponent implements OnInit {
   }
 
   onSignUp(): void {
-    throw new Error('Method not implemented.');
+    const { email, password } = this.signUpForm.value;
+    const singUpPayload = { email, password };
+    console.log(singUpPayload)
   }
 
 }
