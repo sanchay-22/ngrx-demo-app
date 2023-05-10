@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthBlService } from './auth-bl.service';
 import { UserModel } from '../models/auth.model';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/shared/shared.state';
+import { setAutoLogoutAction } from '../states/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   timeoutInterval!: any;
 
-  constructor(private authBlService: AuthBlService) { }
+  constructor(private authBlService: AuthBlService, private store: Store<AppState> ) { }
 
   setUserInLocalStorage(user: UserModel): void {
     localStorage.setItem('userData', JSON.stringify(user));
@@ -27,9 +29,9 @@ export class AuthService {
   }
 
   startTimeoutInterval(user: UserModel): void {
-    const tokenExpTime = this.authBlService.getTokenExpirationTime(user);
+    const timeInterval = this.authBlService.getTimeInterval(user);
 
-    this.timeoutInterval = setTimeout(() => { },tokenExpTime);
+    this.timeoutInterval = setTimeout(() => { this.store.dispatch(setAutoLogoutAction()) }, timeInterval);
   }
 
   clearLocalStorage(): void {

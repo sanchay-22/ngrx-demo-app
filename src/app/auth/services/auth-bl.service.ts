@@ -24,7 +24,7 @@ export class AuthBlService {
     return errorMessage;
   }
 
-  getTokenExpirationTime(user: UserModel): number {
-    return new Date().getTime() - new Date(user.tokenExpDate).getTime();
+  getTimeInterval(user: UserModel): number {
+    return new Date(user.tokenExpDate).getTime() - new Date().getTime();
   }
 }

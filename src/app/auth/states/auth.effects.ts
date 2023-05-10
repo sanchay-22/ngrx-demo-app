@@ -61,12 +61,12 @@ export class AuthEffects implements OnInit {
         )
     )
 
-    // logout$ = createEffect(() => (this.actions$.pipe(
-    //         ofType(setAutoLogoutAction),
-    //         tap(() => {
-    //             this.authService.logout();
-    //             this.router.navigate(['auth']);
-    //         })
-    //     )
-    // ), { dispatch: false });
+    logout$ = createEffect(() => (this.actions$.pipe(
+            ofType(setAutoLogoutAction),
+            map(() => {
+                this.authService.clearLocalStorage();
+                this.router.navigate(['auth']);
+            })
+        )
+    ), { dispatch: false });
 }
