@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthBlService } from '../auth-bl.service';
+import { AuthBlService } from './auth-bl.service';
 import { UserModel } from '../models/auth.model';
 
 @Injectable({

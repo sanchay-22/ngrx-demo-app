@@ -1,8 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, catchError, of, tap, Observable } from 'rxjs';
-import { AuthApiService } from '../auth-api.service';
-import { AuthBlService } from '../auth-bl.service';
+import { AuthApiService } from '../services/auth-api.service';
+import { AuthBlService } from '../services/auth-bl.service';
 import { AuthResponseDataModel } from '../models/auth.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/shared/shared.state';

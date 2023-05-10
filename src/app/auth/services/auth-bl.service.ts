@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthResponseDataModel, UserModel } from './models/auth.model';
-import { ErrorEnum, ErrorMessageEnum } from './misc/auth.enum';
+import { AuthResponseDataModel, UserModel } from '../models/auth.model';
+import { ErrorEnum, ErrorMessageEnum } from '../misc/auth.enum';
 
 @Injectable({
   providedIn: 'root'
