@@ -9,15 +9,18 @@ import { AuthResponseDataModel } from './models/auth.model';
 })
 export class AuthApiService {
 
-  apiEndPoint = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FIREBASE_API_KEY}`;
+  loginEndPointUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.FIREBASE_API_KEY}`;
+  signEndPointUrl = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.FIREBASE_API_KEY}`;
+
+
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<AuthResponseDataModel> {
-    return this.http.post<AuthResponseDataModel>(this.apiEndPoint, { email, password, returnSecureToken: true });
+    return this.http.post<AuthResponseDataModel>(this.loginEndPointUrl, { email, password, returnSecureToken: true });
   }
 
   signup(email: string, password: string): Observable<AuthResponseDataModel> {
-    return this.http.post<AuthResponseDataModel>(this.apiEndPoint, { email, password, returnSecureToken: true });
+    return this.http.post<AuthResponseDataModel>(this.signEndPointUrl, { email, password, returnSecureToken: true });
   }
 
 }
