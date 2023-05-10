@@ -6,3 +6,6 @@ export const AUTH_KEY_CONST: string = '[auth]:';
 export const login = createAction(`${AUTH_KEY_CONST} login`, props<{ email: string, password: string }>());
 export const loginSucceed = createAction(`${AUTH_KEY_CONST}login succeed`, props<{ user: UserModel }>());
 export const loginFailed = createAction(`${AUTH_KEY_CONST} login failed`, props<{ email: string, password: string }>());
+
+export const signUp = createAction(`${AUTH_KEY_CONST} signup`, props<{ email: string, password: string }>());
+export const signUpSucceed = createAction(`${AUTH_KEY_CONST} signup succeed`, props<{ user: UserModel }>());
