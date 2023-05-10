@@ -10,7 +10,7 @@ import { getErrorMessageState, getLoaderState } from './shared/shared.selectors'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'ngrx-tesing-app';
+  title = 'NGRX-DemoApp';
   showLoader$!: Observable<boolean>; //= this.store.select(getLoaderState);
   errorMessage$!: Observable<string> ; //= this.store.select(getErrorMessageState);
 

@@ -5,11 +5,11 @@
         <form action="" [formGroup]="loginForm">
             <div class="mb-3">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" formControlName="email">
+                <input type="email" class="form-control" formControlName="email">
             </div>
             <div class="mb-3">
                 <label for="password">Password</label>
-                <input type="text" class="form-control" formControlName="password">
+                <input type="password" class="form-control" formControlName="password">
             </div>
             <div class="mb-3">
                <button [disabled]="loginForm.invalid" class="btn btn-primary" (click)="login()">Login</button>
