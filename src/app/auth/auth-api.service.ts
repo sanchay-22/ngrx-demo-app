@@ -16,4 +16,8 @@ export class AuthApiService {
     return this.http.post<AuthResponseDataModel>(this.apiEndPoint, { email, password, returnSecureToken: true });
   }
 
+  signup(email: string, password: string): Observable<any> {
+    return this.http.post<any>(this.apiEndPoint, { email, password });
+  }
+
 }
