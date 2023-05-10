@@ -9,3 +9,5 @@ export const setLoginFailedAction = createAction(`${AUTH_KEY_CONST} login failed
 
 export const setSignUpAction = createAction(`${AUTH_KEY_CONST} signup`, props<{ email: string, password: string }>());
 export const setSignUpSucceedAction = createAction(`${AUTH_KEY_CONST} signup succeed`, props<{ user: UserModel }>());
+
+export const setAutoLoginAction = createAction(`${AUTH_KEY_CONST} auto login`)
