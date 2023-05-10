@@ -10,7 +10,7 @@ import { setErrorMessageAction, setLoaderAction } from 'src/app/shared/shared.ac
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getErrorMessageState } from 'src/app/shared/shared.selectors';
 import { Router } from '@angular/router';
-import { setAutoLoginAction, setLoginAction, setLoginSucceedAction, setSignUpAction, setSignUpSucceedAction } from './auth.actions';
+import { setAutoLoginAction, setAutoLogoutAction, setLoginAction, setLoginSucceedAction, setSignUpAction, setSignUpSucceedAction } from './auth.actions';
 import { AuthService } from '../services/auth.service';
 
 @UntilDestroy()
@@ -52,13 +52,21 @@ export class AuthEffects implements OnInit {
         tap(() => this.router.navigate(['/']))),{ dispatch: false }
     );
 
-    autoLogin$ = createEffect(() => {
-        return this.actions$.pipe(
+    autoLogin$ = createEffect(() => (this.actions$.pipe(
             ofType(setAutoLoginAction),
             switchMap((action) => {
                 const user = this.authService.getUserFromLocalStorage();
                 return of(setLoginSucceedAction({ user }))
             })) 
-        }
+        )
     )
+
+    // logout$ = createEffect(() => (this.actions$.pipe(
+    //         ofType(setAutoLogoutAction),
+    //         tap(() => {
+    //             this.authService.logout();
+    //             this.router.navigate(['auth']);
+    //         })
+    //     )
+    // ), { dispatch: false });
 }
