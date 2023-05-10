@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/shared/shared.state';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,6 +10,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
+
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.initializer();
