@@ -10,7 +10,7 @@ import { setErrorMessageAction, setLoaderAction } from 'src/app/shared/shared.ac
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getErrorMessageState } from 'src/app/shared/shared.selectors';
 import { Router } from '@angular/router';
-import { setAutoLoginAction, setLoginAction, setLoginSucceedAction, setSignUpAction, setSignUpSucceedAction } from './auth.actions';
+import { setAutoLoginAction, setAutoLogoutAction, setLoginAction, setLoginSucceedAction, setSignUpAction, setSignUpSucceedAction } from './auth.actions';
 import { AuthService } from '../services/auth.service';
 
 @UntilDestroy()
@@ -34,7 +34,7 @@ export class AuthEffects implements OnInit {
    map((response: AuthResponseDataModel) => {
         const user = this.authBlService.formatResponseData(response);
         this.authService.setUserInLocalStorage(user);
-        return setLoginSucceedAction({ user });
+        return setLoginSucceedAction({ user, redirectToHome: true });
     }),
     catchError(error => this.catchError(error))
    ));
@@ -49,16 +49,24 @@ export class AuthEffects implements OnInit {
 
     navigateOnSucceessfulLoginSignup$ = createEffect(()=> this.actions$.pipe(
         ofType(setSignUpSucceedAction, setLoginSucceedAction),
-        tap(() => this.router.navigate(['/']))),{ dispatch: false }
+        tap((action) => {if(action.redirectToHome) this.router.navigate(['/'])})),{ dispatch: false }
     );
 
-    autoLogin$ = createEffect(() => {
-        return this.actions$.pipe(
+    autoLogin$ = createEffect(() => (this.actions$.pipe(
             ofType(setAutoLoginAction),
-            switchMap((action) => {
+            switchMap(() => {
                 const user = this.authService.getUserFromLocalStorage();
-                return of(setLoginSucceedAction({ user }))
+                return of(setLoginSucceedAction({ user, redirectToHome: false }))
             })) 
-        }
+        )
     )
+
+    logout$ = createEffect(() => (this.actions$.pipe(
+            ofType(setAutoLogoutAction),
+            map(() => {
+                this.authService.clearLocalStorage();
+                this.router.navigate(['auth']);
+            })
+        )
+    ), { dispatch: false });
 }
