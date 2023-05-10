@@ -24,4 +24,8 @@ export class AuthBlService {
     const errorMessage = (message === ErrorEnum.EMAIL_NOT_FOUND) ? ErrorMessageEnum.EMAIL_NOT_FOUND : (message === ErrorEnum.INVALID_PASSWORD) ? ErrorMessageEnum.INVALID_PASSWORD : ErrorMessageEnum.OTHER;
     return errorMessage;
   }
+
+  getTokenExpirationTime(user: UserModel): number {
+    return new Date().getTime() - user.expDate.getTime();
+  }
 }

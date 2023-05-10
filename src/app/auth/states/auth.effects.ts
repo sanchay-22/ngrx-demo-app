@@ -11,13 +11,14 @@ import { setErrorMessageAction, setLoaderAction } from 'src/app/shared/shared.ac
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getErrorMessageState } from 'src/app/shared/shared.selectors';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @UntilDestroy()
 @Injectable()
 export class AuthEffects implements OnInit {
     errorMessage!: string;
 
-    constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService, private store: Store<AppState>, private router: Router) {}
+    constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService, private authServices: AuthService, private store: Store<AppState>, private router: Router) {}
 
     ngOnInit(): void {
         this.store.select(getErrorMessageState).pipe(untilDestroyed(this)).subscribe(data => this.errorMessage = data);
@@ -32,7 +33,7 @@ export class AuthEffects implements OnInit {
        }),
        map((response: AuthResponseDataModel) => {
             const user = this.authBlService.formatLoginResponseData(response);
-
+            this.authServices.setUserInLocalStorage(user);
             return loginSucceed({ user });
         }),
         catchError(error => {
