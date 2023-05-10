@@ -18,8 +18,7 @@ export class AuthService {
   getUserFromLocalStorage(): UserModel | null {
     const userRawData = localStorage.getItem('userData');
     if(userRawData) {
-      const parsedUserData = JSON.parse(userRawData);
-      const user = new UserModel(parsedUserData.emial, parsedUserData.tokenExpiresIn, parsedUserData.localId, new Date(parsedUserData.tokenExp));
+      const user = JSON.parse(userRawData);
       this.startTimeoutInterval(user);
       return user;
     }

@@ -52,9 +52,10 @@ export class AuthEffects implements OnInit {
         tap(() => this.router.navigate(['/']))),{ dispatch: false }
     );
 
-    autoLogin$ = createEffect(() => this.actions$.pipe(
-        ofType(setAutoLoginAction),
-        tap(() => console.log(this.authService.getUserFromLocalStorage())),
-    )
-    );
+    autoLogin$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(setAutoLoginAction),
+            tap((action) => console.log(this.authService.getUserFromLocalStorage()))
+        );
+    }, { dispatch: false });
 }

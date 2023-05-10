@@ -26,6 +26,6 @@ export class AuthBlService {
   }
 
   getTokenExpirationTime(user: UserModel): number {
-    return new Date().getTime() - user.tokenExpDate.getTime();
+    return new Date().getTime() - new Date(user.tokenExpDate).getTime();
   }
 }
