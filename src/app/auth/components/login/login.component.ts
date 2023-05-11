@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { setLoginAction } from '../../states/auth.actions';
+import { loginAction } from '../../states/auth.actions';
 import { AppState } from 'src/app/shared/shared.state';
 import { loaderAction } from 'src/app/shared/shared.actions';
 
@@ -33,6 +33,6 @@ initializeLoginForm(): void {
 login(): void { 
   this.store.dispatch(loaderAction({ loadingStatus: true }));//dispatching the action to set the status of loader true
   const { email, password } = this.loginForm.value;
-  this.store.dispatch(setLoginAction({ email, password }));//dispatching the action to login
+  this.store.dispatch(loginAction({ email, password }));//dispatching the action to login
 }
 }

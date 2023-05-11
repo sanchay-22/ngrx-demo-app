@@ -1,13 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { AUTH_INITAL_STATE_CONST , AuthState } from './auth.state';
-import { setAutoLogoutAction, setLoginSucceedAction, setSignUpSucceedAction } from './auth.actions';
+import { AuthState, INITAL_AUTH_STATE } from './auth.state';
+import * as authActions from './auth.actions';
 
-const AUTH_REDUCER_CONST = createReducer(AUTH_INITAL_STATE_CONST,
-    on(setLoginSucceedAction, (state, action) => ({ ...state, user: action.user })),
-    on(setSignUpSucceedAction, (state, action) => ({...state, user: action.user })),
-    on(setAutoLogoutAction, (state) => ({ ...state, user: null })),
+const AUTH_REDUCER = createReducer(INITAL_AUTH_STATE,
+    on(authActions.loginSucceedAction, (state, action) => ({ ...state, user: action.user })),
+    on(authActions.signUpSucceedAction, (state, action) => ({...state, user: action.user })),
+    on(authActions.autoLogoutAction, (state) => ({ ...state, user: null })),
     );
 
 export function authReducer(state: AuthState, action: any) {
-    return AUTH_REDUCER_CONST(state, action);
+    return AUTH_REDUCER(state, action);
 }

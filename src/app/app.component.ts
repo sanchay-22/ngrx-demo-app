@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './shared/shared.state';
 import { getErrorMessageState, getLoaderState } from './shared/shared.selectors';
-import { setAutoLoginAction } from './auth/states/auth.actions';
+import { autoLoginAction } from './auth/states/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,6 @@ export class AppComponent implements OnInit{
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(setAutoLoginAction()); //dispatching the action
+    this.store.dispatch(autoLoginAction()); //dispatching the action
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loaderAction } from 'src/app/shared/shared.actions';
 import { AppState } from 'src/app/shared/shared.state';
-import { setSignUpAction } from '../../states/auth.actions';
+import { signUpAction } from '../../states/auth.actions';
 
 @Component({
   selector: 'app-sign-up',
@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
   onSignUp(): void {
     const { email, password } = this.signUpForm.value;
     this.store.dispatch(loaderAction({ loadingStatus : true }));
-    this.store.dispatch(setSignUpAction({ email, password }));
+    this.store.dispatch(signUpAction({ email, password }));
   }
 
 }

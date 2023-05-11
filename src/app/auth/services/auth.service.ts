@@ -3,7 +3,7 @@ import { AuthBlService } from './auth-bl.service';
 import { UserModel } from '../models/auth.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/shared/shared.state';
-import { setAutoLogoutAction } from '../states/auth.actions';
+import { autoLogoutAction } from '../states/auth.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class AuthService {
 
   startTimeoutInterval(user: UserModel): void {
     const timeInterval = this.authBlService.getTimeInterval(user);
-    this.timeoutInterval = setTimeout(() => { this.store.dispatch(setAutoLogoutAction()) }, timeInterval);
+    this.timeoutInterval = setTimeout(() => { this.store.dispatch(autoLogoutAction()) }, timeInterval);
   }
 
   clearLocalStorage(): void {
