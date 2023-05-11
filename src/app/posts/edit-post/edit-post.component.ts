@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { PostModel } from 'src/app/shared/shared.model';
-import { updatePost } from '../states/post.action';
+import { setUpdatePost } from '../states/post.action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
@@ -50,7 +50,7 @@ export class EditPostComponent implements OnInit{
     const { title, description } = this.editForm.value;
     const payload: PostModel = { id: this.postID, title, description };
   
-    this.editForm.valid && this.store.dispatch(updatePost({ post: payload }));
+    this.editForm.valid && this.store.dispatch(setUpdatePost({ post: payload }));
     this.router.navigate(['posts']);
   }
 
