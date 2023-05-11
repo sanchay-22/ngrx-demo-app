@@ -1,7 +1,7 @@
-import { PostModel } from '../../shared/shared.model';
+import { Post } from '../../shared/shared.model';
 
 export interface PostStateModel {
-    posts: PostModel[];
+    posts: Post[];
 }
 
 export const POST_INITIAL_STATE_CONST: PostStateModel = {

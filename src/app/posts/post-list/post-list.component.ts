@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectAllPosts } from '../states/post.selectors';
 import { deletePostAction } from '../states/post.action';
-import { PostModel } from 'src/app/shared/shared.model';
+import { Post } from 'src/app/shared/shared.model';
 import { AppState } from 'src/app/shared/shared.state';
 
 @Component({
@@ -12,7 +12,7 @@ import { AppState } from 'src/app/shared/shared.state';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent {
-posts$: Observable<PostModel[]> = this.store.select(selectAllPosts);
+posts$: Observable<Post[]> = this.store.select(selectAllPosts);
 
 constructor(private store: Store<AppState>){}
 
