@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectAllPosts } from '../states/post.selectors';
-import { setDeletePost } from '../states/post.action';
+import { deletePostAction } from '../states/post.action';
 import { PostModel } from 'src/app/shared/shared.model';
 import { AppState } from 'src/app/shared/shared.state';
 
@@ -18,7 +18,7 @@ constructor(private store: Store<AppState>){}
 
 deletePost(id: any): void {
   if(confirm('Are you sure, you want to delete')){
-    this.store.dispatch(setDeletePost({ id }));
+    this.store.dispatch(deletePostAction({ id }));
   }
 }
 
