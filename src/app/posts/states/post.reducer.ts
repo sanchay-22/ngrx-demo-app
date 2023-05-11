@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { POST_INITIAL_STATE_CONST } from './post.state';
+import { INITIAL_POST_STATE } from './post.state';
 import * as postActions from './post.action'
 
-export const POST_REDUCER_CONST = createReducer(POST_INITIAL_STATE_CONST, 
+export const POST_REDUCER_CONST = createReducer(INITIAL_POST_STATE, 
     on(postActions.addPostAciton, (state, action) => ({
         ...state,
         posts: state.posts.concat({ ...action.post, id: (state.posts.length + 1).toString() })
