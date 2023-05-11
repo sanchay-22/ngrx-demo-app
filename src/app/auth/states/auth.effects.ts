@@ -6,12 +6,13 @@ import { AuthBlService } from '../services/auth-bl.service';
 import { AuthResponseDataModel } from '../models/auth.model';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/shared/shared.state';
-import { setErrorMessageAction, setLoaderAction } from 'src/app/shared/shared.actions';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getErrorMessageState } from 'src/app/shared/shared.selectors';
 import { Router } from '@angular/router';
 import { setAutoLoginAction, setAutoLogoutAction, setLoginAction, setLoginSucceedAction, setSignUpAction, setSignUpSucceedAction } from './auth.actions';
 import { AuthService } from '../services/auth.service';
+import * as sharedActions from 'src/app/shared/shared.actions';
+
 
 @UntilDestroy()
 @Injectable()
@@ -28,8 +29,8 @@ export class AuthEffects implements OnInit {
     ofType(setLoginAction, setSignUpAction),
     switchMap((action) => (action.type === setLoginAction.type) ? this.authApiService.login(action.email, action.password) : this.authApiService.signup(action.email, action.password)),
     tap(() => {
-        this.store.dispatch(setLoaderAction({ loadingStatus: false }));
-        if(this.errorMessage !== undefined) this.store.dispatch(setErrorMessageAction({ errorMessage: '' }))
+        this.store.dispatch(sharedActions.loaderAction({ loadingStatus: false }));
+        if(this.errorMessage !== undefined) this.store.dispatch(sharedActions.errorMessageAction({ errorMessage: '' }))
    }),
    map((response: AuthResponseDataModel) => {
         const user = this.authBlService.formatResponseData(response);
@@ -40,9 +41,9 @@ export class AuthEffects implements OnInit {
    ));
     
     catchError(error: any): Observable<any>{
-        this.store.dispatch(setLoaderAction({ loadingStatus: false }));
+        this.store.dispatch(sharedActions.loaderAction({ loadingStatus: false }));
             const errorMessage = this.authBlService.formatLoginErrorMessage(error.error.error.message);
-            this.store.dispatch(setErrorMessageAction({ errorMessage }));
+            this.store.dispatch(sharedActions.errorMessageAction({ errorMessage }));
 
         return of();
     }
