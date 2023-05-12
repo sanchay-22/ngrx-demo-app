@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   clearLocalStorage(): void {
-    localStorage.removeItem('userData');
+    localStorage.clear();
     if(this.timeoutInterval) {
       clearInterval(this.timeoutInterval);
       this.timeoutInterval = null;
