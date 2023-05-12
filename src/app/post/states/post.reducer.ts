@@ -3,9 +3,9 @@ import { INITIAL_POST_STATE } from './post.state';
 import * as postActions from './post.action'
 
 export const POST_REDUCER_CONST = createReducer(INITIAL_POST_STATE, 
-    on(postActions.createPostAciton, (state, action) => ({
+    on(postActions.createdPostAction, (state, action) => ({
         ...state,
-        posts: state.posts.concat({ ...action.post, id: (state.posts.length + 1).toString() })
+        posts: state.posts.concat({ ...action.post })
       })),
     on(postActions.updatePostAction, (state, action) => ({
         ...state,

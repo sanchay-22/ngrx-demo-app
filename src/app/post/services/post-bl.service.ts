@@ -14,7 +14,7 @@ export class PostBlService {
       map(data => {
         const posts: Post[] = [];
         for (const key in data) {
-          posts.push({ ...data[key], id: data[key]?.id})
+          posts.push({ ...data[key], id: key })
         }
 
         return posts;
