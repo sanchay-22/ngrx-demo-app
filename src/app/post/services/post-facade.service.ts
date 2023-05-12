@@ -20,6 +20,6 @@ export class PostFacadeService {
   }
 
   updatePost(post: Post): Observable<{ name: string }> {
-    return this.postApiService.updatePost(post);
+    return this.postApiService.updatePost(this.postBlService.formatUpdatePostPayload(post));
   }
 }

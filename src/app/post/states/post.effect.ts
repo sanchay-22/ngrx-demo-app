@@ -36,8 +36,7 @@ export class PostEffects {
         switchMap((action) => 
         this.postFacadeService.updatePost(action.post).pipe(
             map((response) => {
-                const post: Post = { ...action.post, id: response.name };
-                return updatedPostAction({ post });
+                return updatedPostAction({ post: action.post });
             })
         ))
     ));

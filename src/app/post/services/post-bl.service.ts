@@ -21,4 +21,12 @@ export class PostBlService {
       })
     );
   }
+
+  formatUpdatePostPayload(post: any): any {
+    const updatePostPayload = {
+      [post.id]: { title: post.title, description: post.description }
+    }
+
+    return updatePostPayload;
+  }
 }
