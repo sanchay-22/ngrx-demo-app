@@ -21,4 +21,8 @@ export class PostApiService {
   updatePost(post: Post): Observable<{ name: string }> {
     return this.http.patch<{ name: string }>(this.postBaseUrl, { post });
   }
+
+  deletePost(id: string): any {
+    return this.http.delete(`https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${id}.json`);
+  }
 }

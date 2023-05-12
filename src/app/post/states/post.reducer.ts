@@ -13,7 +13,7 @@ export const POST_REDUCER_CONST = createReducer(INITIAL_POST_STATE,
         posts: state.posts.map(post => post.id === action.post.id ? action.post : post)
       })),
 
-    on(postActions.deletePostAction, (state, { id }) => ({
+    on(postActions.deletedPostAction, (state, { id }) => ({
        ...state,
       posts: state.posts.filter(post => post.id !== id)
     })),

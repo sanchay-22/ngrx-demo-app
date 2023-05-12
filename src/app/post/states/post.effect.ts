@@ -3,7 +3,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { PostFacadeService } from '../services/post-facade.service';
 import { createEffect } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs';
-import { createPostAciton, createdPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
+import { createPostAciton, createdPostAction, deletePostAction, deletedPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
 import { Post } from 'src/app/shared/shared.model';
 
 
@@ -37,6 +37,17 @@ export class PostEffects {
         this.postFacadeService.updatePost(action.post).pipe(
             map((response) => {
                 return updatedPostAction({ post: action.post });
+            })
+        ))
+    ));
+
+
+    deletePost$ = createEffect(() => this.actions$.pipe(
+        ofType(deletePostAction),
+        switchMap((action) => 
+        this.postFacadeService.deletePostAction(action.id).pipe(
+            map((response) => {
+                return deletedPostAction({ id: action.id });
             })
         ))
     ));
