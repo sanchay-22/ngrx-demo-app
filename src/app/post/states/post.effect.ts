@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { PostFacadeService } from '../services/post-facade.service';
 import { createEffect } from '@ngrx/effects';
-import { switchMap, tap } from 'rxjs';
-import { loadPostAction } from './post.action';
+import { map, switchMap } from 'rxjs';
+import { loadPostAction, loadPostSuccessfulAction } from './post.action';
+import { Post } from 'src/app/shared/shared.model';
 
 
 @Injectable()
@@ -12,11 +13,12 @@ export class PostEffects {
     
     loadPost$ = createEffect(() => this.actions$.pipe(
         ofType(loadPostAction),
-        switchMap((action) => {
+        switchMap(() => {
             this.postFacadeService.getPostList().subscribe(data => console.log(data));
-            return this.postFacadeService.getPostList();
+            return this.postFacadeService.getPostList().pipe(
+                map((posts: Post[]) => loadPostSuccessfulAction({ posts }))
+                );
         })
         )
-    , 
-    {dispatch: false });
+    );
 }
