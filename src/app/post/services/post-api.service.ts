@@ -7,14 +7,18 @@ import { Post } from 'src/app/shared/shared.model';
   providedIn: 'root'
 })
 export class PostApiService {
-  postUrl = 'https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json'
+  postBaseUrl = 'https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json'
   constructor(private http: HttpClient) { }
 
   getPostList(): Observable<Post[]> { 
-     return this.http.get<Post[]>(this.postUrl).pipe();
+     return this.http.get<Post[]>(this.postBaseUrl).pipe();
   }
 
   createPost(post: Post): Observable<{ name: string}> {
-    return this.http.post< { name: string }>(this.postUrl, { post });
+    return this.http.post< { name: string }>(this.postBaseUrl, { post });
+  }
+
+  updatePost(post: Post): Observable<{ name: string }> {
+    return this.http.patch<{ name: string }>(this.postBaseUrl, { post });
   }
 }

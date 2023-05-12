@@ -18,4 +18,8 @@ export class PostFacadeService {
   createPost(post: Post): Observable<{ name: string }> {
     return this.postApiService.createPost(post);
   }
+
+  updatePost(post: Post): Observable<{ name: string }> {
+    return this.postApiService.updatePost(post);
+  }
 }
