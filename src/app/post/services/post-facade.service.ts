@@ -14,4 +14,8 @@ export class PostFacadeService {
   getPostList(): Observable<Post[]> { 
     return this.postBlService.mapPostList(this.postApiService.getPostList());
   }
+
+  createPost(post: Post): Observable<{ name: string }> {
+    return this.createPost(post);
+  }
 }
