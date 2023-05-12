@@ -16,6 +16,6 @@ export class PostFacadeService {
   }
 
   createPost(post: Post): Observable<{ name: string }> {
-    return this.createPost(post);
+    return this.postApiService.createPost(post);
   }
 }
