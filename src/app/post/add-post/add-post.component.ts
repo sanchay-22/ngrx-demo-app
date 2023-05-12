@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { addPost } from '../states/post.action';
-import { PostModel } from 'src/app/shared/shared.model';
+import { addPostAciton } from '../states/post.action';
+import { Post } from 'src/app/shared/shared.model';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { AppState } from 'src/app/shared/shared.state';
 
@@ -30,9 +30,9 @@ export class AddPostComponent implements OnInit {
 
   addPost(): void {
     const { title, description } = this.postForm.value;
-    const payload: PostModel = { title,description };
+    const payload: Post = { title,description };
 
-    this.postForm.valid && this.store.dispatch(addPost({ post: payload }));
+    this.postForm.valid && this.store.dispatch(addPostAciton({ post: payload }));
   }
 
   showErrors(formFieldName: string): string {

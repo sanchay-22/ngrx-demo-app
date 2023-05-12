@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../shared.state';
 import { Observable } from 'rxjs';
 import { isAuthenticated } from 'src/app/auth/states/auth.selectors';
-import { setAutoLogoutAction } from 'src/app/auth/states/auth.actions';
+import { autoLogoutAction } from 'src/app/auth/states/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +18,6 @@ export class HeaderComponent {
 
   onLogout(event: Event):void {
       event.preventDefault();
-      this.store.dispatch(setAutoLogoutAction());
+      this.store.dispatch(autoLogoutAction());
     }
   }
