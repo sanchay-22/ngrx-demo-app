@@ -3,7 +3,7 @@ import { Post } from 'src/app/shared/shared.model';
 
 export const POST_KEY= ': post';
 
-export const createPostAciton = createAction(`create ${POST_KEY}`, props<{ post: Post}>());
+export const createPostAction = createAction(`create ${POST_KEY}`, props<{ post: Post}>());
 export const createdPostAction = createAction(`created ${POST_KEY}`, props<{ post: Post}>());
 
 export const updatePostAction = createAction(`update ${POST_KEY}`, props<{ post: Post }>());

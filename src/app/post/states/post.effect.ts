@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { PostFacadeService } from '../services/post-facade.service';
 import { createEffect } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs';
-import { createPostAciton, createdPostAction, deletePostAction, deletedPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
+import { map, switchMap } from 'rxjs';
+import { createPostAction, createdPostAction, deletePostAction, deletedPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
 import { Post } from 'src/app/shared/shared.model';
 
 
@@ -21,7 +21,7 @@ export class PostEffects {
     ));
 
     createPost$ = createEffect(() => this.actions$.pipe(
-        ofType(createPostAciton),
+        ofType(createPostAction),
         switchMap((action) => 
         this.postFacadeService.createPost(action.post).pipe(
             map((response) => {
