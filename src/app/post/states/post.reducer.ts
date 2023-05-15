@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { INITIAL_POST_STATE } from './post.state';
+import { INITIAL_POST_STATE, PostState } from './post.state';
 import * as postActions from './post.action'
 
-export const POST_REDUCER_CONST = createReducer(INITIAL_POST_STATE, 
+export const POST_REDUCER_CONST = createReducer<PostState>(INITIAL_POST_STATE, 
     on(postActions.createdPostAction, (state, action) => ({
         ...state,
         posts: state.posts.concat({ ...action.post })
@@ -20,7 +20,9 @@ export const POST_REDUCER_CONST = createReducer(INITIAL_POST_STATE,
 
     on(postActions.loadedPostsAction, (state, action) => ({ ...state, posts: action.posts })),
     );
+  
+export type PostAction = typeof postActions.createdPostAction | typeof postActions.updatedPostAction | typeof postActions.deletedPostAction | typeof postActions.loadedPostsAction;
 
-export function postReducer(state: any, action: any): any {
+export function postReducer(state: PostState, action: PostAction): PostState {
     return POST_REDUCER_CONST(state, action);
 }
