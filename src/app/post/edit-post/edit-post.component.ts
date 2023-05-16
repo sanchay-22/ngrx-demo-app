@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { PostModel } from 'src/app/shared/shared.model';
-import { updatePost } from '../states/post.action';
+import { Post } from 'src/app/shared/shared.model';
+import { updatePostAction } from '../states/post.action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
@@ -39,24 +39,24 @@ export class EditPostComponent implements OnInit{
     }),untilDestroyed(this)).subscribe();              
   }
 
-  patchFormData(data: PostModel): void {
+  patchFormData(data: Post): void {
     this.editForm = new FormGroup({
-      title: new FormControl(data?.title,[Validators.required, Validators.minLength(5)]),
-      description: new FormControl(data?.description, [Validators.required, Validators.minLength(5)])
+      title: new FormControl(data?.title,[Validators.required, Validators.minLength(3)]),
+      description: new FormControl(data?.description, [Validators.required, Validators.minLength(3)])
     })
   }
 
   updatePost(): void {
     const { title, description } = this.editForm.value;
-    const payload: PostModel = { id: this.postID, title, description };
+    const payload: Post = { id: this.postID, title, description };
   
-    this.editForm.valid && this.store.dispatch(updatePost({ post: payload }));
+    this.editForm.valid && this.store.dispatch(updatePostAction({ post: payload }));
     this.router.navigate(['posts']);
   }
 
   showErrors(formFieldName: string): string {
     const formField = this.editForm.get(`${formFieldName}`);
-    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 5 characters length.` : '';
+    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 3 characters length.` : '';
     
     return errors;
   }

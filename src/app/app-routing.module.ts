@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'posts',
-    loadChildren: (): any => import('./posts/posts.module').then(m => m.PostsModule)
+    loadChildren: (): any => import('./post/posts.module').then(m => m.PostsModule)
   },
   {
     path: 'auth',

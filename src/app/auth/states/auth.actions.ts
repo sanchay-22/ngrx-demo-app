@@ -1,8 +1,14 @@
 import { createAction, props } from '@ngrx/store';
 import { UserModel } from '../models/auth.model';
 
-export const AUTH_KEY_CONST: string = '[auth]:';
+export const AUTH_KEY: string = '[auth]:';
 
-export const login = createAction(`${AUTH_KEY_CONST} login`, props<{ email: string, password: string }>());
-export const loginSucceed = createAction(`${AUTH_KEY_CONST}login succeed`, props<{ user: UserModel }>());
-export const loginFailed = createAction(`${AUTH_KEY_CONST} login failed`, props<{ email: string, password: string }>());
+export const loginAction = createAction(`${AUTH_KEY} login`, props<{ email: string, password: string }>());
+export const loginSucceedAction = createAction(`${AUTH_KEY}login succeed`, props<{ user: UserModel, redirectToHome: boolean }>());
+export const loginFailedAction = createAction(`${AUTH_KEY} login failed`, props<{ email: string, password: string }>());
+
+export const signUpAction = createAction(`${AUTH_KEY} signup`, props<{ email: string, password: string }>());
+export const signUpSucceedAction = createAction(`${AUTH_KEY} signup succeed`, props<{ user: UserModel ,redirectToHome: boolean }>());
+
+export const autoLoginAction = createAction(`${AUTH_KEY} auto login`)
+export const autoLogoutAction = createAction(`${AUTH_KEY} logout`); 

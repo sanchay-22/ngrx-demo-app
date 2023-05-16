@@ -4,9 +4,13 @@ export interface AuthResponseDataModel {
     refreshToken: string;
     expiresIn: string;
     localId: string;
-    registered: boolean;
+    registered?: boolean;
 }
 
 export class UserModel {
-    constructor(private email: string, private token: string, private localId: string, private expirationDate: Date) {}     
+    constructor(private email: string, private token: string, private localId: string, private tokenExp: Date) {}   
+    
+    get tokenExpDate(): Date {
+        return this.tokenExp;
+    }
 }

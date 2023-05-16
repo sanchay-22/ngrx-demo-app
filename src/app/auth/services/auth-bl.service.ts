@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AuthResponseDataModel, UserModel } from './models/auth.model';
-import { ErrorEnum, ErrorMessageEnum } from './misc/auth.enum';
+import { AuthResponseDataModel, UserModel } from '../models/auth.model';
+import { ErrorEnum, ErrorMessageEnum } from '../misc/auth.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ export class AuthBlService {
 
   constructor() { }
 
-  formatLoginResponseData(data: AuthResponseDataModel): UserModel {
+  formatResponseData(data: AuthResponseDataModel): UserModel {
     const { email, idToken, localId, expiresIn } = data;
     const user = new UserModel(email, idToken, localId, this.formatTokenExpirationData(expiresIn)); 
     return user;
@@ -23,5 +22,9 @@ export class AuthBlService {
   formatLoginErrorMessage(message: string): string {
     const errorMessage = (message === ErrorEnum.EMAIL_NOT_FOUND) ? ErrorMessageEnum.EMAIL_NOT_FOUND : (message === ErrorEnum.INVALID_PASSWORD) ? ErrorMessageEnum.INVALID_PASSWORD : ErrorMessageEnum.OTHER;
     return errorMessage;
+  }
+
+  getTimeInterval(user: UserModel): number {
+    return new Date(user.tokenExpDate).getTime() - new Date().getTime();
   }
 }
