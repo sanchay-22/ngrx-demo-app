@@ -8,6 +8,6 @@ const AUTH_REDUCER = createReducer(INITIAL_AUTH_STATE,
     on(authActions.autoLogoutAction, (state) => ({ ...state, user: null })),
     );
 
-export function authReducer(state: AuthState, action: any): AuthState {
+export function authReducer(state: AuthState | undefined, action: any): AuthState {
     return AUTH_REDUCER(state, action);
 }

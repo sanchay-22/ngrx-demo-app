@@ -8,6 +8,6 @@ const API_STATE_REDUCER_CONST = createReducer(API_INTIAL_STATE_CONST,
     on(sharedActions.errorMessageAction, (state, action) => ({ ...state, errorMessage: action.errorMessage })),
     );
 
-export function sharedApiReducer(state: SharedApiState, action: any): SharedApiState {
+export function sharedApiReducer(state: SharedApiState | undefined, action: any): SharedApiState {
     return API_STATE_REDUCER_CONST(state, action)
 }
