@@ -2,9 +2,6 @@ import { AuthState, SharedApiState } from './shared.model';
 import { StateEnum } from './shared.enum';
 import {sharedApiReducer } from './shared.reducer';
 import { authReducer } from '../auth/states/auth.reducers';
-import { ActionReducerMap } from '@ngrx/store';
-
-
 
 export interface AppState {
     [StateEnum.LOADER_STATE]: SharedApiState;
