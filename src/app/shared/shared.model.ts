@@ -4,6 +4,10 @@ export class UserModel {
     get tokenExpDate(): Date {
         return this.tokenExp;
     }
+
+    get userToken(): string | null {
+        return (new Date(this.tokenExp).getTime() > new Date().getTime()) ? this.token : null;
+    }
 }
 
 export interface Post {
