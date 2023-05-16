@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from './shared/shared.state';
+import { SharedState } from './shared/shared.state';
 import { getErrorMessageState, getLoaderState } from './shared/shared.selectors';
 import { autoLoginAction } from './auth/states/auth.actions';
 
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
   showLoader$: Observable<boolean> = this.store.select(getLoaderState);
   errorMessage$: Observable<string> = this.store.select(getErrorMessageState);
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<SharedState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(autoLoginAction()); //dispatching the action

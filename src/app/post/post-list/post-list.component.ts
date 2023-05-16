@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { selectAllPosts } from '../states/post.selectors';
 import { deletePostAction, loadPostsAction } from '../states/post.action';
 import { Post } from 'src/app/shared/shared.model';
-import { AppState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/shared.state';
 
 @Component({
   selector: 'app-post-list',
@@ -14,7 +14,7 @@ import { AppState } from 'src/app/shared/shared.state';
 export class PostListComponent implements OnInit {
 posts$: Observable<Post[]> = this.store.select(selectAllPosts);
 
-constructor(private store: Store<AppState>){}
+constructor(private store: Store<SharedState>){}
 
 ngOnInit(): void {
   this.store.dispatch(loadPostsAction())

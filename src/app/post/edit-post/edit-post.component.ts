@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { AppState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/shared.state';
 
 @UntilDestroy()
 
@@ -20,7 +20,7 @@ export class EditPostComponent implements OnInit{
   editForm!: FormGroup;
   postID!: string;
 
-  constructor(private store: Store<AppState>, private activatedRoute: ActivatedRoute, private router: Router){}
+  constructor(private store: Store<SharedState>, private activatedRoute: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     this.initializer();

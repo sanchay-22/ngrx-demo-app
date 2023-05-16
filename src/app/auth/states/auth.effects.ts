@@ -5,7 +5,7 @@ import { AuthApiService } from '../services/auth-api.service';
 import { AuthBlService } from '../services/auth-bl.service';
 import { AuthResponseDataModel } from '../models/auth.model';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/shared.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { getErrorMessageState } from 'src/app/shared/shared.selectors';
 import { Router } from '@angular/router';
@@ -19,7 +19,7 @@ import * as authActions from './auth.actions';
 export class AuthEffects implements OnInit {
     errorMessage!: string;
 
-    constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService, private authService: AuthService, private store: Store<AppState>, private router: Router) {}
+    constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService, private authService: AuthService, private store: Store<SharedState>, private router: Router) {}
 
     ngOnInit(): void {
         this.store.select(getErrorMessageState).pipe(untilDestroyed(this)).subscribe(data => this.errorMessage = data);

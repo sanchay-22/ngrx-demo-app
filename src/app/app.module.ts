@@ -15,7 +15,7 @@ import { AddPostComponent } from './post/add-post/add-post.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingComponent } from './shared/components/loading/loading.component'; 
-import { appReducer } from './shared/shared.state';
+import { sharedReducer } from './shared/shared.state';
 import { AuthEffects } from './auth/states/auth.effects';
 
 @NgModule({
@@ -33,7 +33,7 @@ import { AuthEffects } from './auth/states/auth.effects';
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot(sharedReducer),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,

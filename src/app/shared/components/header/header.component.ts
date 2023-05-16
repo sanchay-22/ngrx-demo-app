@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../shared.state';
+import { SharedState } from '../../shared.state';
 import { Observable } from 'rxjs';
 import { isAuthenticated } from 'src/app/auth/states/auth.selectors';
 import { autoLogoutAction } from 'src/app/auth/states/auth.actions';
@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   userIsLoggedIn$: Observable<boolean> = this.store.select(isAuthenticated);
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<SharedState>) {}
 
   onLogout(event: Event):void {
       event.preventDefault();

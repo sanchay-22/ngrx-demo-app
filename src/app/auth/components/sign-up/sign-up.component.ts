@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loaderAction } from 'src/app/shared/shared.actions';
-import { AppState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/shared.state';
 import { signUpAction } from '../../states/auth.actions';
 
 @Component({
@@ -13,7 +13,7 @@ import { signUpAction } from '../../states/auth.actions';
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<SharedState>) {}
 
   ngOnInit(): void {
     this.initializer();
