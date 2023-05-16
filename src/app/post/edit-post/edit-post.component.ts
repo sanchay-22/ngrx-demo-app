@@ -41,8 +41,8 @@ export class EditPostComponent implements OnInit{
 
   patchFormData(data: Post): void {
     this.editForm = new FormGroup({
-      title: new FormControl(data?.title,[Validators.required, Validators.minLength(5)]),
-      description: new FormControl(data?.description, [Validators.required, Validators.minLength(5)])
+      title: new FormControl(data?.title,[Validators.required, Validators.minLength(3)]),
+      description: new FormControl(data?.description, [Validators.required, Validators.minLength(3)])
     })
   }
 
@@ -56,7 +56,7 @@ export class EditPostComponent implements OnInit{
 
   showErrors(formFieldName: string): string {
     const formField = this.editForm.get(`${formFieldName}`);
-    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 5 characters length.` : '';
+    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 3 characters length.` : '';
     
     return errors;
   }
