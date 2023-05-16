@@ -45,7 +45,7 @@ export class PostEffects {
     deletePost$ = createEffect(() => this.actions$.pipe(
         ofType(deletePostAction),
         switchMap((action) => 
-        this.postFacadeService.deletePostAction(action.id).pipe(
+        this.postFacadeService.deletePost(action.id).pipe(
             map((response) => {
                 return deletedPostAction({ id: action.id });
             })
