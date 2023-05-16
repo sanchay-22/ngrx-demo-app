@@ -1,8 +1,8 @@
-import { SharedApiState } from './shared.model';
+import { ApiState } from './shared.model';
 
-export const API_INTIAL_STATE_CONST: SharedApiState = {
+export const API_INTIAL_STATE_CONST: ApiState = {
     loadingStatus: false,
     errorMessage: '',
 }
 
-export const SHARED_API_STATE_KEY_CONST: string = 'shared api state';
+export const API_STATE_KEY_CONST: string = 'api state';

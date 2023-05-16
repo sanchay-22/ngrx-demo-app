@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AuthResponseDataModel, UserModel } from '../models/auth.model';
+import { AuthResponseDataModel } from '../models/auth.model';
 import { ErrorEnum, ErrorMessageEnum } from '../misc/auth.enum';
+import { UserModel } from 'src/app/shared/shared.model';
 
 @Injectable({
   providedIn: 'root'

@@ -6,11 +6,3 @@ export interface AuthResponseDataModel {
     localId: string;
     registered?: boolean;
 }
-
-export class UserModel {
-    constructor(private email: string, private token: string, private localId: string, private tokenExp: Date) {}   
-    
-    get tokenExpDate(): Date {
-        return this.tokenExp;
-    }
-}

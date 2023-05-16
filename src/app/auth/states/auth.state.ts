@@ -1,10 +1,7 @@
-import { UserModel } from '../models/auth.model'
+import { AuthState } from 'src/app/shared/shared.model';
 
-export interface AuthState {
-    user: UserModel | null;
-
-}
-
-export const INITAL_AUTH_STATE: AuthState = {
+export const INITIAL_AUTH_STATE: AuthState = {
     user: null,
 }
+
+export { AuthState };
