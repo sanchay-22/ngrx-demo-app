@@ -9,16 +9,27 @@ export class PostBlService {
 
   constructor() { }
 
-  mapPostList(data: Observable<Post[]>): Observable<Post[]> {
+  mapPostList(data: Observable<any[]>): Observable<Post[]> {
     return data.pipe(
       map(data => {
         const posts: Post[] = [];
+       if(!!data){
         for (const key in data) {
-          posts.push({ ...data[key], id: data[key]?.id})
+          
+          posts.push({ id: key, title: data[key]?.post?.title, description: data[key]?.post?.description })
         }
-
+       }
+       
         return posts;
       })
     );
+  }
+
+  formatUpdatePostPayload(post: any): any {
+    const updatePostPayload = {
+      [post.id]: { title: post.title, description: post.description }
+    }
+
+    return updatePostPayload;
   }
 }

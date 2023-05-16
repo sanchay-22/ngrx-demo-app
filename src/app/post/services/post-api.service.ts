@@ -1,17 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/shared/shared.model';
-import { PostBlService } from './post-bl.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostApiService {
-  postUrl = 'https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json'
-  constructor(private http: HttpClient, private postBlService: PostBlService) { }
+  postBaseUrl = 'https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json'
+  constructor(private http: HttpClient) { }
 
-  getPostList(): Observable<Post[]> { 
-     return this.http.get<Post[]>(this.postUrl).pipe();
-    }
+  getPostList(): Observable<any[]> { 
+     return this.http.get<any[]>(this.postBaseUrl).pipe();
+  }
+
+  createPost(post: Post): Observable<{ name: string}> {
+    return this.http.post< { name: string }>(this.postBaseUrl, { post });
+  }
+
+  updatePost(post: Post): Observable<{ name: string }> {
+    const id = post.id;
+    return this.http.patch<{ name: string }>(`https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${id}.json`, { post });
+  }
+
+  deletePost(id: string): any {
+    return this.http.delete(`https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${id}.json`);
+  }
 }

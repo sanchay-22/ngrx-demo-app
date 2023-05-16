@@ -14,4 +14,16 @@ export class PostFacadeService {
   getPostList(): Observable<Post[]> { 
     return this.postBlService.mapPostList(this.postApiService.getPostList());
   }
+
+  createPost(post: Post): Observable<{ name: string }> {
+    return this.postApiService.createPost(post);
+  }
+
+  updatePost(post: Post): Observable<{ name: string }> {
+    return this.postApiService.updatePost(post);
+  }
+
+  deletePost(id: string) : Observable<boolean> {
+    return this.postApiService.deletePost(id);
+  }
 }
