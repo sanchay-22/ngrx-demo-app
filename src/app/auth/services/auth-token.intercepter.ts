@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, take } from 'rxjs';
 import { SharedState } from 'src/app/shared/shared.state';
 import { getToken } from '../states/auth.selectors';
 
@@ -14,6 +14,7 @@ export class AuthTokenIntercepter implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.store.select(getToken).pipe(
+      take(1),
       switchMap((token) => {
         if(!token) return next.handle(req);
 
