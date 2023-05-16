@@ -10,15 +10,15 @@ export class PostApiService {
   postBaseUrl = 'https://ngrx-testing-app-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json'
   constructor(private http: HttpClient) { }
 
-  getPostList(): Observable<Post[]> { 
-     return this.http.get<Post[]>(this.postBaseUrl).pipe();
+  getPostList(): Observable<any[]> { 
+     return this.http.get<any[]>(this.postBaseUrl).pipe();
   }
 
   createPost(post: Post): Observable<{ name: string}> {
     return this.http.post< { name: string }>(this.postBaseUrl, { post });
   }
 
-  updatePost(post: Post): Observable<{ name: string }> {
+  updatePost(post: any): Observable<{ name: string }> {
     return this.http.patch<{ name: string }>(this.postBaseUrl, { post });
   }
 

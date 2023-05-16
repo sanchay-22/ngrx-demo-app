@@ -9,14 +9,17 @@ export class PostBlService {
 
   constructor() { }
 
-  mapPostList(data: Observable<Post[]>): Observable<Post[]> {
+  mapPostList(data: Observable<any[]>): Observable<Post[]> {
     return data.pipe(
       map(data => {
         const posts: Post[] = [];
+       if(!!data){
         for (const key in data) {
-          posts.push({ ...data[key], id: key })
+          
+          posts.push({ id: key, title: data[key]?.post?.title, description: data[key]?.post?.description })
         }
-
+       }
+       
         return posts;
       })
     );
