@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store'
 import { API_INTIAL_STATE_CONST } from './shared.const'
-import { SharedApiState } from './shared.model'
+import { ApiState } from './shared.model'
 import * as sharedActions from './shared.actions';
 
 const API_STATE_REDUCER_CONST = createReducer(API_INTIAL_STATE_CONST,
@@ -8,6 +8,6 @@ const API_STATE_REDUCER_CONST = createReducer(API_INTIAL_STATE_CONST,
     on(sharedActions.errorMessageAction, (state, action) => ({ ...state, errorMessage: action.errorMessage })),
     );
 
-export function sharedApiReducer(state: SharedApiState | undefined, action: any): SharedApiState {
+export function apiReducer(state: ApiState | undefined, action: any): ApiState {
     return API_STATE_REDUCER_CONST(state, action)
 }

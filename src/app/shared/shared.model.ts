@@ -12,7 +12,7 @@ export interface Post {
     description: string;
 }
 
-export interface SharedApiState {
+export interface ApiState {
     loadingStatus: boolean;
     errorMessage: string;
 }
