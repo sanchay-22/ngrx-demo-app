@@ -23,8 +23,8 @@ export class AddPostComponent implements OnInit {
 
   initializeForm(): void {
     this.postForm = new FormGroup({
-      title: new FormControl(null,[Validators.required, Validators.minLength(5)]),
-      description: new FormControl(null, [Validators.required, Validators.minLength(5)])
+      title: new FormControl(null,[Validators.required, Validators.minLength(3)]),
+      description: new FormControl(null, [Validators.required, Validators.minLength(3)])
     })
   }
 
@@ -37,7 +37,7 @@ export class AddPostComponent implements OnInit {
 
   showErrors(formFieldName: string): string {
     const formField = this.postForm.get(`${formFieldName}`);
-    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 5 characters length.` : '';
+    const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 3 characters length.` : '';
     
     return errors;
   }
