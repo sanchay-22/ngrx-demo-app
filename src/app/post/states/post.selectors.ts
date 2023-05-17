@@ -8,4 +8,4 @@ const getPostState = createFeatureSelector<PostState>(StateEnum.POST_STATE);
 
 export const getAllPosts  = createSelector(getPostState, (state) => state.posts);
 export const getPostById = createSelector(getPostState, getCurrentRoute,
-     (state: PostState, route: RouterStateUrl) => state.posts.find((post) => post.id === route.params['id']));
+     (state: PostState, route: RouterStateUrl) => state.posts.find((post) => post ? post.id === route.params['id'] : null));
