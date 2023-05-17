@@ -7,7 +7,7 @@ import { AuthResponseDataModel } from '../misc/auth.model';
 import { Store } from '@ngrx/store';
 import { SharedState } from 'src/app/shared/store/shared.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { getErrorMessageState } from 'src/app/shared/store/shared.selectors';
+import { getErrorMessage } from 'src/app/shared/store/shared.selectors';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import * as sharedActions from 'src/app/shared/store/shared.actions';
@@ -22,7 +22,7 @@ export class AuthEffects implements OnInit {
     constructor(private actions$: Actions, private authApiService: AuthApiService, private authBlService: AuthBlService, private authService: AuthService, private store: Store<SharedState>, private router: Router) {}
 
     ngOnInit(): void {
-        this.store.select(getErrorMessageState).pipe(untilDestroyed(this)).subscribe(data => this.errorMessage = data);
+        this.store.select(getErrorMessage).pipe(untilDestroyed(this)).subscribe(data => this.errorMessage = data);
     }
 
    auth$ = createEffect(()=> this.actions$.pipe(
