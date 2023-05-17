@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PostState } from './post.state';
-import { StateEnum } from 'src/app/shared/shared.enum';
+import { StateEnum } from 'src/app/shared/misc/shared.enum';
 
 const getPostState = createFeatureSelector<PostState>(StateEnum.POST_STATE);
 

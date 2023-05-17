@@ -1,5 +1,5 @@
-import { AuthState, ApiState } from './shared.model';
-import { StateEnum } from './shared.enum';
+import { AuthState, ApiState } from './misc/shared.model';
+import { StateEnum } from './misc/shared.enum';
 import { apiReducer } from './shared.reducer';
 import { authReducer } from '../auth/states/auth.reducers';
 import { RouterReducerState, routerReducer } from '@ngrx/router-store';

@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ApiState } from './shared.model';
-import { StateEnum } from './shared.enum';
+import { ApiState } from './misc/shared.model';
+import { StateEnum } from './misc/shared.enum';
 
 export const API_STATE_CONST = createFeatureSelector<ApiState>(StateEnum.LOADER_STATE);
 

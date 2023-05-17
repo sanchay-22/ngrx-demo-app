@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
-import { Post } from 'src/app/shared/shared.model';
+import { Observable, map } from 'rxjs';
+import { Post } from 'src/app/shared/misc/shared.model';
 
 @Injectable({
   providedIn: 'root'

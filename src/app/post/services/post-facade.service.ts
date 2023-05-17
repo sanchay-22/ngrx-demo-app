@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PostApiService } from './post-api.service';
 import { Observable } from 'rxjs';
-import { Post } from 'src/app/shared/shared.model';
 import { PostBlService } from './post-bl.service';
+import { Post } from 'src/app/shared/misc/shared.model';
 
 @Injectable({
   providedIn: 'root'

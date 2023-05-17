@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { postReducer } from './states/post.reducer';
-import { StateEnum } from '../shared/shared.enum';
+import { StateEnum } from '../shared/misc/shared.enum';
 import { PostEffects } from './states/post.effect';
 
 

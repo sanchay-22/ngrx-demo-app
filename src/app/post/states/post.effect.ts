@@ -4,7 +4,7 @@ import { PostFacadeService } from '../services/post-facade.service';
 import { createEffect } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { createPostAction, createdPostAction, deletePostAction, deletedPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
-import { Post } from 'src/app/shared/shared.model';
+import { Post } from 'src/app/shared/misc/shared.model';
 
 
 @Injectable()
