@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { PostFacadeService } from '../services/post-facade.service';
 import { createEffect } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { createPostAction, createdPostAction, deletePostAction, deletedPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
 import { Post } from 'src/app/shared/misc/shared.model';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class PostEffects {
-    constructor(private actions$: Actions, private postFacadeService: PostFacadeService) {}
+    constructor(private actions$: Actions, private postFacadeService: PostFacadeService, private router: Router) {}
     
     loadPost$ = createEffect(() => this.actions$.pipe(
         ofType(loadPostsAction),
@@ -40,6 +41,11 @@ export class PostEffects {
             })
         ))
     ));
+
+    navigateOnAddDeletePost$  = createEffect(() => this.actions$.pipe(
+        ofType(updatedPostAction, createdPostAction),
+        tap(() => this.router.navigate(['/posts']))
+    ), { dispatch : false });
 
 
     deletePost$ = createEffect(() => this.actions$.pipe(
