@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { INCREMENT_ACTION_CONST, DECREMENT_ACTION_CONST, RESET_ACTION_CONST } from '../state/counter.actions';
-import { SharedState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/store/shared.state';
 
 @Component({
   selector: 'app-counter-btns',

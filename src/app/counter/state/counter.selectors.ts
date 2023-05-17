@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CounterStateModel } from './counter.state';
-import { StateEnum } from 'src/app/shared/shared.enum';
+import { StateEnum } from 'src/app/shared/misc/shared.enum';
 
 const GET_COUNTER_STATE_CONST = createFeatureSelector<CounterStateModel>(StateEnum.COUNTER_STATE);
 

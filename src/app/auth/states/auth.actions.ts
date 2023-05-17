@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UserModel } from 'src/app/shared/shared.model';
+import { UserModel } from 'src/app/shared/misc/shared.model';
 
 export const AUTH_KEY: string = '[auth]:';
 

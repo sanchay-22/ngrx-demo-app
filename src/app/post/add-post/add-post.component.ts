@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createPostAction } from '../states/post.action';
-import { Post } from 'src/app/shared/shared.model';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { SharedState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/store/shared.state';
+import { Post } from 'src/app/shared/misc/shared.model';
 
 @UntilDestroy()
 @Component({
@@ -38,7 +38,7 @@ export class AddPostComponent implements OnInit {
   showErrors(formFieldName: string): string {
     const formField = this.postForm.get(`${formFieldName}`);
     const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 3 characters length.` : '';
-    
+
     return errors;
   }
 }

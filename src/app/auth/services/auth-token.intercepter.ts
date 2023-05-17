@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, switchMap, take } from 'rxjs';
-import { SharedState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/store/shared.state';
 import { getToken } from '../states/auth.selectors';
 
 @Injectable({
