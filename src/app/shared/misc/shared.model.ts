@@ -27,7 +27,7 @@ export interface AuthState {
     user: UserModel | null;
 }
 
-export interface RotuerUrlState {
+export interface RouterStateUrl {
     url: string;
     params: Params;
     queryParams: Params
