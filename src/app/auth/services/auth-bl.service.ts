@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthResponseDataModel } from '../models/auth.model';
+import { AuthResponseDataModel } from '../misc/auth.model';
 import { ErrorEnum, ErrorMessageEnum } from '../misc/auth.enum';
 import { UserModel } from 'src/app/shared/misc/shared.model';
 

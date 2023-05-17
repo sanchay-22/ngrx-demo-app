@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap, catchError, of, tap, Observable } from 'rxjs';
 import { AuthApiService } from '../services/auth-api.service';
 import { AuthBlService } from '../services/auth-bl.service';
-import { AuthResponseDataModel } from '../models/auth.model';
+import { AuthResponseDataModel } from '../misc/auth.model';
 import { Store } from '@ngrx/store';
 import { SharedState } from 'src/app/shared/shared.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
