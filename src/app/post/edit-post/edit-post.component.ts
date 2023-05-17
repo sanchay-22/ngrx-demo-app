@@ -20,29 +20,27 @@ export class EditPostComponent implements OnInit{
   editForm!: FormGroup;
   postID!: string;
 
-  constructor(private store: Store<SharedState>, private activatedRoute: ActivatedRoute, private router: Router){}
+  constructor(private store: Store<SharedState>, private router: Router){}
 
   ngOnInit(): void {
     this.initializer();
   }
 
   initializer(): void {
-    this.activatedRoute.paramMap.pipe(untilDestroyed(this)).subscribe((params) => {
-      this.postID = params.get('id') as string;
-      this.getPostByID(this.postID);
-    });
+    this.getPostByID();
   }
 
-  getPostByID(id: string): void {
-    this.store.select(getPostById(id)).pipe(switchMap(async (data) => {
-      data && this.patchFormData(data);
-    }),untilDestroyed(this)).subscribe();
+  getPostByID(): void {
+    this.store.select(getPostById).pipe(untilDestroyed(this),
+    switchMap(async (post) => {
+      if(!!post) this.patchFormData(post);
+    })).subscribe();
   }
 
   patchFormData(data: Post): void {
     this.editForm = new FormGroup({
-      title: new FormControl(data?.title,[Validators.required, Validators.minLength(3)]),
-      description: new FormControl(data?.description, [Validators.required, Validators.minLength(3)])
+      title: new FormControl(data?.title || null,[Validators.required, Validators.minLength(3)]),
+      description: new FormControl(data?.description || null, [Validators.required, Validators.minLength(3)])
     })
   }
 
