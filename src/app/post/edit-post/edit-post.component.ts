@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { selectPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { SharedState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/store/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
 
 @UntilDestroy()
@@ -36,7 +36,7 @@ export class EditPostComponent implements OnInit{
   getPostByID(id: string): void {
     this.store.select(selectPostById(id)).pipe(switchMap(async (data) => {
       data && this.patchFormData(data);
-    }),untilDestroyed(this)).subscribe();              
+    }),untilDestroyed(this)).subscribe();
   }
 
   patchFormData(data: Post): void {
@@ -49,7 +49,7 @@ export class EditPostComponent implements OnInit{
   updatePost(): void {
     const { title, description } = this.editForm.value;
     const payload: Post = { id: this.postID, title, description };
-  
+
     this.editForm.valid && this.store.dispatch(updatePostAction({ post: payload }));
     this.router.navigate(['posts']);
   }
@@ -57,7 +57,7 @@ export class EditPostComponent implements OnInit{
   showErrors(formFieldName: string): string {
     const formField = this.editForm.get(`${formFieldName}`);
     const errors = formField?.errors?.['required'] ? `The ${formFieldName} is required.` : formField?.errors?.['minlength'] ? `The ${formFieldName} should be minimum of 3 characters length.` : '';
-    
+
     return errors;
   }
 

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store'
-import { API_INTIAL_STATE_CONST } from './misc/shared.const'
-import { ApiState } from './misc/shared.model'
+import { API_INTIAL_STATE_CONST } from '../misc/shared.const'
+import { ApiState } from '../misc/shared.model'
 import * as sharedActions from './shared.actions';
 
 const API_STATE_REDUCER_CONST = createReducer(API_INTIAL_STATE_CONST,

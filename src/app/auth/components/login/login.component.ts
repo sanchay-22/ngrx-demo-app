@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loginAction } from '../../states/auth.actions';
-import { SharedState } from 'src/app/shared/shared.state';
-import { loaderAction } from 'src/app/shared/shared.actions';
+import { SharedState } from 'src/app/shared/store/shared.state';
+import { loaderAction } from 'src/app/shared/store/shared.actions';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ initializeLoginForm(): void {
   });
 }
 
-login(): void { 
+login(): void {
   this.store.dispatch(loaderAction({ loadingStatus: true }));//dispatching the action to set the status of loader true
   const { email, password } = this.loginForm.value;
   this.store.dispatch(loginAction({ email, password }));//dispatching the action to login

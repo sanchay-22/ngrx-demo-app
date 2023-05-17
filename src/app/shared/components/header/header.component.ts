@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SharedState } from '../../shared.state';
+import { SharedState } from '../../store/shared.state';
 import { Observable } from 'rxjs';
 import { isAuthenticated } from 'src/app/auth/states/auth.selectors';
 import { autoLogoutAction } from 'src/app/auth/states/auth.actions';

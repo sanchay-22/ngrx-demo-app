@@ -5,12 +5,12 @@ import { AuthApiService } from '../services/auth-api.service';
 import { AuthBlService } from '../services/auth-bl.service';
 import { AuthResponseDataModel } from '../misc/auth.model';
 import { Store } from '@ngrx/store';
-import { SharedState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/store/shared.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { getErrorMessageState } from 'src/app/shared/shared.selectors';
+import { getErrorMessageState } from 'src/app/shared/store/shared.selectors';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import * as sharedActions from 'src/app/shared/shared.actions';
+import * as sharedActions from 'src/app/shared/store/shared.actions';
 import * as authActions from './auth.actions';
 
 
@@ -39,7 +39,7 @@ export class AuthEffects implements OnInit {
     }),
     catchError(error => this.catchError(error))
    ));
-    
+
     catchError(error: any): Observable<any>{
         this.store.dispatch(sharedActions.loaderAction({ loadingStatus: false }));
             const errorMessage = this.authBlService.formatLoginErrorMessage(error.error.error.message);
@@ -58,7 +58,7 @@ export class AuthEffects implements OnInit {
             switchMap(() => {
                 const user = this.authService.getUserFromLocalStorage();
                 return of(authActions.loginSucceedAction({ user, redirectToHome: false }))
-            })) 
+            }))
         )
     )
 

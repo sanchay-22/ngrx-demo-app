@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
-import { SharedState } from 'src/app/shared/shared.state';
+import { SharedState } from 'src/app/shared/store/shared.state';
 import { isAuthenticated } from '../states/auth.selectors';
 
 @Injectable({
