@@ -18,6 +18,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { sharedReducer } from './shared/shared.state';
 import { AuthEffects } from './auth/states/auth.effects';
 import { AuthTokenIntercepter } from './auth/services/auth-token.intercepter';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AuthTokenIntercepter } from './auth/services/auth-token.intercepter';
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     }),
+    StoreRouterConnectingModule.forRoot(),
     HttpClientModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenIntercepter, multi: true }],
