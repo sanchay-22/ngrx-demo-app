@@ -5,17 +5,17 @@ import * as postActions from './post.action'
 export const POST_REDUCER_CONST = createReducer<PostState>(INITIAL_POST_STATE, 
     on(postActions.createdPostAction, (state, action) => ({
         ...state,
-        posts: state.posts.concat({ ...action.post })
+        posts: state.post.concat({ ...action.post })
       })),
 
     on(postActions.updatedPostAction, (state, action) => ({
         ...state,
-        posts: state.posts.map(post => post.id === action.post.id ? action.post : post)
+        posts: state.post.map(post => post.id === action.post.id ? action.post : post)
       })),
 
     on(postActions.deletedPostAction, (state, { id }) => ({
        ...state,
-      posts: state.posts.filter(post => post.id !== id)
+      posts: state.post.filter(post => post.id !== id)
     })),
 
     on(postActions.loadedPostsAction, (state, action) => ({ ...state, posts: action.posts })),
