@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { updatePostAction } from '../states/post.action';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { getPostById } from '../states/post.selectors';
-import { switchMap } from 'rxjs';
+import { filter, tap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SharedState } from 'src/app/shared/store/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
@@ -18,7 +18,7 @@ import { Post } from 'src/app/shared/misc/shared.model';
 })
 export class EditPostComponent implements OnInit{
   editForm!: FormGroup;
-  postID!: string;
+  postID!: string | undefined;
 
   constructor(private store: Store<SharedState>, private router: Router){}
 
@@ -27,14 +27,17 @@ export class EditPostComponent implements OnInit{
   }
 
   initializer(): void {
-    this.getPostByID();
+    this.getCurrentPost();
   }
 
-  getPostByID(): void {
+  getCurrentPost(): void {
     this.store.select(getPostById).pipe(untilDestroyed(this),
-    switchMap(async (post) => {
-      if(!!post) this.patchFormData(post);
-    })).subscribe();
+    filter((post): post is Post => !!post?.id),
+      tap(post => {
+        this.patchFormData(post);
+        this.postID = post?.id;
+      })
+    ).subscribe();
   }
 
   patchFormData(data: Post): void {
