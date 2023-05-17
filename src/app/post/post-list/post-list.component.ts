@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAllPosts } from '../states/post.selectors';
+import { getAllPosts } from '../states/post.selectors';
 import { deletePostAction, loadPostsAction } from '../states/post.action';
 import { SharedState } from 'src/app/shared/store/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
@@ -12,7 +12,7 @@ import { Post } from 'src/app/shared/misc/shared.model';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-posts$: Observable<Post[]> = this.store.select(selectAllPosts);
+posts$: Observable<Post[]> = this.store.select(getAllPosts);
 
 constructor(private store: Store<SharedState>){}
 

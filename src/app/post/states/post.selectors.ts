@@ -6,6 +6,6 @@ import { RouterStateUrl } from 'src/app/shared/misc/shared.model';
 
 const getPostState = createFeatureSelector<PostState>(StateEnum.POST_STATE);
 
-export const selectAllPosts  = createSelector(getPostState, (state) => state.posts);
-export const selectPostById = (id: any) => createSelector(getPostState, getCurrentRoute,
+export const getAllPosts  = createSelector(getPostState, (state) => state.posts);
+export const getPostById = (id: any) => createSelector(getPostState, getCurrentRoute,
      (state: PostState, route: RouterStateUrl) => state.posts.find((post) => post.id === route.params['id']));

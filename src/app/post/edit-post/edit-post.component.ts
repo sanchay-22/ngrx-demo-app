@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { updatePostAction } from '../states/post.action';
 import { ActivatedRoute, Router } from '@angular/router';
-import { selectPostById } from '../states/post.selectors';
+import { getPostById } from '../states/post.selectors';
 import { switchMap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SharedState } from 'src/app/shared/store/shared.state';
@@ -34,7 +34,7 @@ export class EditPostComponent implements OnInit{
   }
 
   getPostByID(id: string): void {
-    this.store.select(selectPostById(id)).pipe(switchMap(async (data) => {
+    this.store.select(getPostById(id)).pipe(switchMap(async (data) => {
       data && this.patchFormData(data);
     }),untilDestroyed(this)).subscribe();
   }
