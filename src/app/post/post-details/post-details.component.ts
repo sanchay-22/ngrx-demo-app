@@ -10,13 +10,8 @@ import { getPostById } from '../states/post.selectors';
   templateUrl: './post-details.component.html',
   styleUrls: ['./post-details.component.css']
 })
-export class PostDetailsComponent implements OnInit {
+export class PostDetailsComponent {
   post$: Observable<Post | null | undefined> = this.store.select(getPostById);
 
   constructor(private store: Store<SharedState>) {}
-
-  ngOnInit(): void {
-    this.store.select(getPostById).subscribe(data => console.log(data))
-  }
-
 }

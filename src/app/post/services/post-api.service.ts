@@ -29,8 +29,7 @@ export class PostApiService {
     return this.http.delete(`${this.postUrlBase}${id}.json`);
   }
 
-  getPostByID(id: string) : Observable<Post> {
-    console.log(id)
-    return this.http.get<Post>(`${this.postUrlBase}${id}.json`);
+  getPostByID(id: string) : Observable<any> {
+    return this.http.get<any>(`${this.postUrlBase}${id}.json`);
   }
 }
