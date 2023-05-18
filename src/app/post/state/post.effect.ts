@@ -50,8 +50,9 @@ export class PostEffects {
         filter((action: RouterNavigatedAction<any>) => action.payload.routerState.url.startsWith('/posts/details')),
         map((action: RouterNavigatedAction<any>) => action.payload.routerState?.['params']['id']),//here this map--> will return the id from the routerState
         switchMap((id) => this.postFacadeService.getPostByID(id).pipe(
-            map((post) => {  
-                const posts: Post[] = [post];
+            map((post) => { 
+                const { title, description } = post; 
+                const posts: Post[] = [{ id, title, description }];
 
                 return loadedPostsAction({ posts })
             })
