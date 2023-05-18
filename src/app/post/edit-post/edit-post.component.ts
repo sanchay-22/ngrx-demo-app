@@ -49,7 +49,7 @@ export class EditPostComponent implements OnInit{
 
   updatePost(): void {
     const { title, description } = this.editForm.value;
-    const payload: Post = { id: this.postID, title, description };
+    const payload: any = { id: this.postID, title, description };
 
     this.editForm.valid && this.store.dispatch(updatePostAction({ post: payload }));
     this.router.navigate(['posts']);

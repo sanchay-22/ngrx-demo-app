@@ -30,7 +30,7 @@ export class AddPostComponent implements OnInit {
 
   addPost(): void {
     const { title, description } = this.postForm.value;
-    const payload: Post = { title,description };
+    const payload: any = { title,description };
 
     this.postForm.valid && this.store.dispatch(createPostAction({ post: payload }));
   }
