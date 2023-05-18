@@ -32,4 +32,13 @@ export class PostBlService {
 
     return updatePostPayload;
   }
+  
+  formatPostResponse(response: Observable<any>): Observable<Post> {
+    return response.pipe(map((data: any) => {
+      const { description, title, id } = data?.post;
+      const post: Post = { description, title, id };
+      
+      return post;
+     }));
+  }
 }

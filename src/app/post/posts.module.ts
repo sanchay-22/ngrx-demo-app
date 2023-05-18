@@ -7,10 +7,13 @@ import { PostsRoutingModule } from './posts-routing.module';
 import { postReducer } from './states/post.reducer';
 import { StateEnum } from '../shared/misc/shared.enum';
 import { PostEffects } from './states/post.effect';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PostDetailsComponent
+  ],
   imports: [
     CommonModule,
     PostsRoutingModule,
