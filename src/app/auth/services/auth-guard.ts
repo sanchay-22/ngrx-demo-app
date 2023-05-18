@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Store } from '@ngrx/store';
 import { Observable, of, switchMap } from 'rxjs';
 import { SharedState } from 'src/app/shared/store/shared.state';
-import { isAuthenticated } from '../states/auth.selectors';
+import { isAuthenticated } from '../state/auth.selectors';
 
 @Injectable({
   providedIn: 'root'

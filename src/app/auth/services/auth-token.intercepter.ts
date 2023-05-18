@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, switchMap, take } from 'rxjs';
 import { SharedState } from 'src/app/shared/store/shared.state';
-import { getToken } from '../states/auth.selectors';
+import { getToken } from '../state/auth.selectors';
 
 @Injectable({
   providedIn: 'root'

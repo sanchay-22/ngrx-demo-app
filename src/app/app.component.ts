@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SharedState } from './shared/store/shared.state';
 import { getErrorMessage, getLoader } from './shared/store/shared.selectors';
-import { autoLoginAction } from './auth/states/auth.actions';
+import { autoLoginAction } from './auth/state/auth.actions';
 
 @Component({
   selector: 'app-root',

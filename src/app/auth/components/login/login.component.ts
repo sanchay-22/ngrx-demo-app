@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { loginAction } from '../../states/auth.actions';
+import { loginAction } from '../../state/auth.actions';
 import { SharedState } from 'src/app/shared/store/shared.state';
 import { loaderAction } from 'src/app/shared/store/shared.actions';
 

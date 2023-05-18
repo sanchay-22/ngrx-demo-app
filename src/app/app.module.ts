@@ -16,7 +16,7 @@ import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { sharedReducer } from './shared/store/shared.state';
-import { AuthEffects } from './auth/states/auth.effects';
+import { AuthEffects } from './auth/state/auth.effects';
 import { AuthTokenIntercepter } from './auth/services/auth-token.intercepter';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/store/custom-serializer';

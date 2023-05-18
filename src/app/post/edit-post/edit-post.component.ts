@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { updatePostAction } from '../states/post.action';
+import { updatePostAction } from '../state/post.action';
 import { Router } from '@angular/router';
-import { getPostById } from '../states/post.selectors';
+import { getPostById } from '../state/post.selectors';
 import { filter, tap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { SharedState } from 'src/app/shared/store/shared.state';

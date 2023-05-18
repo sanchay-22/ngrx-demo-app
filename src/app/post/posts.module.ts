@@ -4,9 +4,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { PostsRoutingModule } from './posts-routing.module';
-import { postReducer } from './states/post.reducer';
+import { postReducer } from './state/post.reducer';
 import { StateEnum } from '../shared/misc/shared.enum';
-import { PostEffects } from './states/post.effect';
+import { PostEffects } from './state/post.effect';
 import { PostDetailsComponent } from './post-details/post-details.component';
 
 
