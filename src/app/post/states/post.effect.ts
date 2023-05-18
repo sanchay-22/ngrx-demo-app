@@ -7,6 +7,7 @@ import { createPostAction, createdPostAction, deletePostAction, deletedPostActio
 import { Post } from 'src/app/shared/misc/shared.model';
 import { Router } from '@angular/router';
 import { ROUTER_NAVIGATION, RouterNavigatedAction } from '@ngrx/router-store';
+import { Update } from '@ngrx/entity';
 
 @Injectable()
 export class PostEffects {
@@ -37,7 +38,10 @@ export class PostEffects {
         ofType(updatePostAction),
         switchMap((action) => 
         this.postFacadeService.updatePost(action.post).pipe(
-            map(() => updatedPostAction({ post: action.post }))
+            map(() => {
+                const updatedPost: Update<Post> = { id: action.post.id, changes: { ...action.post } };
+                return updatedPostAction({ post: updatedPost })
+            })
         ))
     ));
 
