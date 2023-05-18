@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { PostFacadeService } from '../services/post-facade.service';
 import { createEffect } from '@ngrx/effects';
-import { map, switchMap, tap } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { createPostAction, createdPostAction, deletePostAction, deletedPostAction, loadPostsAction, loadedPostsAction, updatePostAction, updatedPostAction } from './post.action';
 import { Post } from 'src/app/shared/misc/shared.model';
 import { Router } from '@angular/router';
-
 
 @Injectable()
 export class PostEffects {
@@ -42,11 +41,25 @@ export class PostEffects {
         ))
     ));
 
-    navigateOnAddDeletePost$  = createEffect(() => this.actions$.pipe(
+    // getPost$ = createEffect(() => this.actions$.pipe(
+    //     ofType(ROUTER_NAVIGATION),
+    //     filter((r: RouterNavigatedAction) => {
+    //         return r.payload.routerState.url.startsWith('/posts/details');
+    //     }), map((r: any) => {
+    //         return r.payload.routerState['params']['id'];
+    //     }),
+    //     switchMap((id) => this.postFacadeService.getPostByID(id).pipe(
+    //         map((post) => {
+    //             const postData: Post[] = [{...post}]
+    //             return loadedPostsAction({ posts: postData })
+    //         })
+    //     ))
+    // ));
+
+    navigateOnAddUpdatePost$  = createEffect(() => this.actions$.pipe(
         ofType(updatedPostAction, createdPostAction),
         tap(() => this.router.navigate(['/posts']))
     ), { dispatch : false });
-
 
     deletePost$ = createEffect(() => this.actions$.pipe(
         ofType(deletePostAction),

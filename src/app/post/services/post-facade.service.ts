@@ -26,4 +26,8 @@ export class PostFacadeService {
   deletePost(id: string) : Observable<boolean> {
     return this.postApiService.deletePost(id);
   }
+
+  getPostByID(id: any) : Observable<Post> {
+    return this.postApiService.getPostByID(id);
+  }
 }
