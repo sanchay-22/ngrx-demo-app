@@ -20,6 +20,10 @@ import { AuthEffects } from './auth/state/auth.effects';
 import { AuthTokenIntercepter } from './auth/services/auth-token.intercepter';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/state/custom-serializer';
+import { TotoListComponent } from './todo/components/toto-list/toto-list.component';
+import { CreateTodoComponent } from './todo/components/create-todo/create-todo.component';
+import { EditTodoComponent } from './todo/components/edit-todo/edit-todo.component';
+import { TodoDetailsComponent } from './todo/components/todo-details/todo-details.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { CustomSerializer } from './shared/state/custom-serializer';
     AddPostComponent,
     EditPostComponent,
     LoadingComponent,
+    TotoListComponent,
+    CreateTodoComponent,
+    EditTodoComponent,
+    TodoDetailsComponent,
   ],
   imports: [
     BrowserModule,
