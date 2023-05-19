@@ -20,6 +20,9 @@ import { AuthEffects } from './auth/state/auth.effects';
 import { AuthTokenIntercepter } from './auth/services/auth-token.intercepter';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/state/custom-serializer';
+import { EntityDataModule } from '@ngrx/data';
+
+import { entityConfig } from './shared/state/shared.entity-metadata';
 
 @NgModule({
   declarations: [
@@ -34,15 +37,16 @@ import { CustomSerializer } from './shared/state/custom-serializer';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+
     StoreModule.forRoot(sharedReducer),
     EffectsModule.forRoot([AuthEffects]),
-    StoreDevtoolsModule.instrument({
-      logOnly: environment.production,
-    }),
     StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
-    HttpClientModule
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    EntityDataModule.forRoot(entityConfig),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenIntercepter, multi: true }],
   bootstrap: [AppComponent]
