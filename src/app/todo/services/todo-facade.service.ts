@@ -6,7 +6,7 @@ import { Todo } from '../misc/todo.model';
 @Injectable({
   providedIn: 'root'
 })
-export class PostFacadeService {
+export class TodoFacadeService {
 
   constructor(private todoBaseApiService: TodoBaseApiService) {}
 
