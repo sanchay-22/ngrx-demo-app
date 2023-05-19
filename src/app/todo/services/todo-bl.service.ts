@@ -1,23 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Todo } from '../misc/todo.model';
+import { Todo, TodoPayloadAttributes } from '../misc/todo.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoBlService {
-
+ 
   constructor() { }
 
-  formatTodosResponse(response: any) : Observable<Todo[]> {
-    return response.pipe(
-       map((data: any) => {
-         const todos: Todo[] = [];
-         for(let key in data) {
-           todos.push({ ...data[key], id: key });
-         }
-         return todos;
-       })
-     );
-   }
+ formatAddTodoResponse(response: Observable<{ name: string }>, payload: TodoPayloadAttributes): Observable<Todo> {
+    return response.pipe(map((data: any) => ({ ...payload, id: data.name })));
+  }
+
+  formatTodosResponse(response: Observable<any>): Observable<Todo[]> {
+    return response.pipe(map((data: any) => Object.keys(data).map(id => ({ id, ...data[id] }))));
+  }
 }

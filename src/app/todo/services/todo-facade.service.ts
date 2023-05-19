@@ -7,8 +7,12 @@ import { Todo } from '../misc/todo.model';
   providedIn: 'root'
 })
 export class TodoFacadeService {
-
+ 
   constructor(private todoEntityBaseService: TodoEntityBaseService) {}
+
+  addTodo(payload: any): Observable<Todo> {
+    return this.todoEntityBaseService.add(payload);
+  }
 
   getAllTodos(): Observable<Todo[]> {
     return this.todoEntityBaseService.entities$;//this code will not directly hit api, rather it will emit the collection maintained by the todoEntityBaseService 

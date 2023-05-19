@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TodoFacadeService } from '../../services/todo-facade.service';
 import { Observable } from 'rxjs';
 import { Todo } from '../../misc/todo.model';

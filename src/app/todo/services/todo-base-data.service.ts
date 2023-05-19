@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
-import { Todo } from '../misc/todo.model';
+import { Todo, TodoPayloadAttributes } from '../misc/todo.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TodoBlService } from './todo-bl.service';
@@ -19,5 +19,9 @@ export class TodoBaseDataService extends DefaultDataService<Todo> {
 
   override getAll(): Observable<Todo[]> {
     return this.todoBlService.formatTodosResponse(this.http.get(this.todoUrl));
+  }
+
+  override add(payload: TodoPayloadAttributes): Observable<Todo> {
+    return this.todoBlService.formatAddTodoResponse(this.http.post<{ name: string }>(this.todoUrl, payload), payload);
   }
 }
