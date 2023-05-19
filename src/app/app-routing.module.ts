@@ -21,6 +21,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'todos',
+    loadChildren: (): any => import('./todo/todo.module').then(m => m.TodoModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'posts/details/:id',
     component: PostDetailsComponent
   },
