@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodoFacadeService } from '../../services/todo-facade.service';
 import { Observable } from 'rxjs';
 import { Todo } from '../../misc/todo.model';
@@ -10,6 +10,6 @@ import { Todo } from '../../misc/todo.model';
 })
 export class TodoListComponent {
   todos$: Observable<Todo[]> = this.todoFacadeService.getAllTodos();
-  
+
   constructor(private todoFacadeService: TodoFacadeService) {}
 }

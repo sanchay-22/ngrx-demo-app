@@ -11,6 +11,6 @@ export class TodoFacadeService {
   constructor(private todoEntityBaseService: TodoEntityBaseService) {}
 
   getAllTodos(): Observable<Todo[]> {
-    return this.todoEntityBaseService.getAll();
+    return this.todoEntityBaseService.entities$;//this code will not directly hit api, rather it will emit the collection maintained by the todoEntityBaseService 
   }
 }
