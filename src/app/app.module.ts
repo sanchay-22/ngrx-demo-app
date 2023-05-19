@@ -23,6 +23,7 @@ import { CustomSerializer } from './shared/state/custom-serializer';
 import { EntityDataModule } from '@ngrx/data';
 
 import { entityConfig } from './shared/state/shared.entity-metadata';
+import { TodoBaseDataService } from './todo/services/todo-base-data.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { entityConfig } from './shared/state/shared.entity-metadata';
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
     EntityDataModule.forRoot(entityConfig),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenIntercepter, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenIntercepter, multi: true }, TodoBaseDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
