@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loginAction } from '../../state/auth.actions';
-import { SharedState } from 'src/app/shared/store/shared.state';
-import { loaderAction } from 'src/app/shared/store/shared.actions';
+import { SharedState } from 'src/app/shared/state/shared.state';
+import { loaderAction } from 'src/app/shared/state/shared.actions';
 
 @Component({
   selector: 'app-login',

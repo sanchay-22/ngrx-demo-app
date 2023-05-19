@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SharedState } from './shared/store/shared.state';
-import { getErrorMessage, getLoader } from './shared/store/shared.selectors';
+import { SharedState } from './shared/state/shared.state';
+import { getErrorMessage, getLoader } from './shared/state/shared.selectors';
 import { autoLoginAction } from './auth/state/auth.actions';
 
 @Component({

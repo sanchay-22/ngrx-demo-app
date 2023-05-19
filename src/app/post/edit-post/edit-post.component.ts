@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { getPostById } from '../state/post.selectors';
 import { filter, tap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { SharedState } from 'src/app/shared/state/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
 
 @UntilDestroy()

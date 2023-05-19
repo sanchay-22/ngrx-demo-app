@@ -9,15 +9,15 @@ import { Router } from '@angular/router';
 import { ROUTER_NAVIGATION, RouterNavigatedAction } from '@ngrx/router-store';
 import { Update } from '@ngrx/entity';
 import { Store } from '@ngrx/store';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { SharedState } from 'src/app/shared/state/shared.state';
 import { getAllPosts } from './post.selectors';
-import { dummyAction } from 'src/app/shared/store/shared.actions';
+import { dummyAction } from 'src/app/shared/state/shared.actions';
 
 
 @Injectable()
 export class PostEffects {
     constructor(private actions$: Actions, private postFacadeService: PostFacadeService, private router: Router, private store: Store<SharedState>) {}
-    
+
     loadPost$ = createEffect(() => this.actions$.pipe(
         ofType(loadPostsAction),
         switchMap(() => (
@@ -29,11 +29,11 @@ export class PostEffects {
 
     createPost$ = createEffect(() => this.actions$.pipe(
         ofType(createPostAction),
-        switchMap((action) => 
+        switchMap((action) =>
         this.postFacadeService.createPost(action.post).pipe(
             map((response) => {
                 const post: Post = { ...action.post, id: response.name };
-                
+
                 return createdPostAction({ post });
             })
         ))
@@ -41,7 +41,7 @@ export class PostEffects {
 
     updatePost$ = createEffect(() => this.actions$.pipe(
         ofType(updatePostAction),
-        switchMap((action) => 
+        switchMap((action) =>
         this.postFacadeService.updatePost(action.post).pipe(
             map(() => {
                 const updatedPost: Update<Post> = { id: action.post.id, changes: { ...action.post } };
@@ -58,10 +58,10 @@ export class PostEffects {
         switchMap(([id, posts]) => {
             if(!posts.length) {
                 return this.postFacadeService.getPostByID(id).pipe(
-                        map((post) => { 
-                            const { title, description } = post; 
+                        map((post) => {
+                            const { title, description } = post;
                             const posts: Post[] = [{ id, title, description }];
-            
+
                             return loadedPostsAction({ posts })
                         }))
             }
@@ -76,7 +76,7 @@ export class PostEffects {
 
     deletePost$ = createEffect(() => this.actions$.pipe(
         ofType(deletePostAction),
-        switchMap((action) => 
+        switchMap((action) =>
         this.postFacadeService.deletePost(action.id).pipe(
             map(() => deletedPostAction({ id: action.id }))
         ))

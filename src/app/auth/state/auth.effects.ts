@@ -5,12 +5,12 @@ import { AuthApiService } from '../services/auth-api.service';
 import { AuthBlService } from '../services/auth-bl.service';
 import { AuthResponseDataModel } from '../misc/auth.model';
 import { Store } from '@ngrx/store';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { SharedState } from 'src/app/shared/state/shared.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { getErrorMessage } from 'src/app/shared/store/shared.selectors';
+import { getErrorMessage } from 'src/app/shared/state/shared.selectors';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import * as sharedActions from 'src/app/shared/store/shared.actions';
+import * as sharedActions from 'src/app/shared/state/shared.actions';
 import * as authActions from './auth.actions';
 
 
