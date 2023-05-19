@@ -1,3 +1,4 @@
+import { Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
 import { Post } from 'src/app/shared/misc/shared.model';
 
@@ -7,7 +8,7 @@ export const createPostAction = createAction(`create ${POST_KEY}`, props<{ post:
 export const createdPostAction = createAction(`created ${POST_KEY}`, props<{ post: Post}>());
 
 export const updatePostAction = createAction(`update ${POST_KEY}`, props<{ post: Post }>());
-export const updatedPostAction = createAction(`updated ${POST_KEY}`, props<{ post: Post }>())
+export const updatedPostAction = createAction(`updated ${POST_KEY}`, props<{ post: Update<Post> }>())
 
 export const deletePostAction = createAction(`delete ${POST_KEY}`, props<{ id: string }>());
 export const deletedPostAction = createAction(`deleted ${POST_KEY}`, props<{ id: string }>());

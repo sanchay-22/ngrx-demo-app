@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { INCREMENT_ACTION_CONST, DECREMENT_ACTION_CONST, RESET_ACTION_CONST } from '../state/counter.actions';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { SharedState } from 'src/app/shared/state/shared.state';
 
 @Component({
   selector: 'app-counter-btns',
@@ -9,7 +9,7 @@ import { SharedState } from 'src/app/shared/store/shared.state';
   styleUrls: ['./counter-btns.component.css']
 })
 export class CounterBtnsComponent {
-  //This is without using the ngrx store
+  //This is without using the ngrx state
   /*
     @Output() changeCounter = new EventEmitter<string>();
 

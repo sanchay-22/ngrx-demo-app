@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { loaderAction } from 'src/app/shared/store/shared.actions';
-import { SharedState } from 'src/app/shared/store/shared.state';
-import { signUpAction } from '../../states/auth.actions';
+import { loaderAction } from 'src/app/shared/state/shared.actions';
+import { SharedState } from 'src/app/shared/state/shared.state';
+import { signUpAction } from '../../state/auth.actions';
 
 @Component({
   selector: 'app-sign-up',

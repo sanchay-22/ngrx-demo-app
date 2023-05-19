@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { createPostAction } from '../states/post.action';
+import { createPostAction } from '../state/post.action';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { SharedState } from 'src/app/shared/state/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
 
 @UntilDestroy()
@@ -30,7 +30,7 @@ export class AddPostComponent implements OnInit {
 
   addPost(): void {
     const { title, description } = this.postForm.value;
-    const payload: Post = { title,description };
+    const payload: any = { title,description };
 
     this.postForm.valid && this.store.dispatch(createPostAction({ post: payload }));
   }

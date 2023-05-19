@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { updatePostAction } from '../states/post.action';
+import { updatePostAction } from '../state/post.action';
 import { Router } from '@angular/router';
-import { getPostById } from '../states/post.selectors';
+import { getPostById } from '../state/post.selectors';
 import { filter, tap } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { SharedState } from 'src/app/shared/state/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
 
 @UntilDestroy()
@@ -49,7 +49,7 @@ export class EditPostComponent implements OnInit{
 
   updatePost(): void {
     const { title, description } = this.editForm.value;
-    const payload: Post = { id: this.postID, title, description };
+    const payload: any = { id: this.postID, title, description };
 
     this.editForm.valid && this.store.dispatch(updatePostAction({ post: payload }));
     this.router.navigate(['posts']);

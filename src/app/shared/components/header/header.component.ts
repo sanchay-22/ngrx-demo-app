@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { SharedState } from '../../store/shared.state';
+import { SharedState } from '../../state/shared.state';
 import { Observable } from 'rxjs';
-import { isAuthenticated } from 'src/app/auth/states/auth.selectors';
-import { autoLogoutAction } from 'src/app/auth/states/auth.actions';
+import { isAuthenticated } from 'src/app/auth/state/auth.selectors';
+import { autoLogoutAction } from 'src/app/auth/state/auth.actions';
 
 @Component({
   selector: 'app-header',

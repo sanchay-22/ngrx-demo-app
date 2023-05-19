@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getAllPosts } from '../states/post.selectors';
-import { deletePostAction, loadPostsAction } from '../states/post.action';
-import { SharedState } from 'src/app/shared/store/shared.state';
+import { getAllPosts } from '../state/post.selectors';
+import { deletePostAction, loadPostsAction } from '../state/post.action';
+import { SharedState } from 'src/app/shared/state/shared.state';
 import { Post } from 'src/app/shared/misc/shared.model';
 
 @Component({
