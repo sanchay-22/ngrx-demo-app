@@ -1,5 +1,5 @@
 <div>
-    <table class="table table-stripped form-text">
+    <table class="table table-stripped form-text" *ngIf="todos$">
         <thead>
             <tr>
                 <th>Id</th>
@@ -10,10 +10,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Id</td>
-                <td>title</td>
-                <td>des</td>
+            <tr *ngFor="let todo of todos$ | async">
+                <td>{{todo.id}}</td>
+                <td>{{todo.title}}</td>
+                <td>{{todo.desc}}</td>
                 <td style="display: flex; justify-content:center;  align-items: center; font-size:smaller">
                    <div>
                     <input type="radio" id="pending" name="status" value="pending">&nbsp;
@@ -29,7 +29,7 @@
                    </div>
                 
                 </td>
-                <td>Status</td>
+                <td>{{todo.status}}</td>
             </tr>
         </tbody>
     </table>
