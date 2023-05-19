@@ -20,10 +20,12 @@ export class PostEffects {
 
     loadPost$ = createEffect(() => this.actions$.pipe(
         ofType(loadPostsAction),
-        switchMap(() => (
+        withLatestFrom(this.store.select(getAllPosts)),
+        switchMap(([action, posts]) => (
+            (!posts.length) ? 
             this.postFacadeService.getPostList().pipe(
             map((posts: Post[]) => loadedPostsAction({ posts }))
-            )
+            ) : of(dummyAction())
         ))
     ));
 
@@ -55,18 +57,14 @@ export class PostEffects {
         filter((action: RouterNavigatedAction<any>) => action.payload.routerState.url.startsWith('/posts/details')),
         map((action: RouterNavigatedAction<any>) => action.payload.routerState?.['params']['id']),//here this map--> will return the id from the routerState
         withLatestFrom(this.store.select(getAllPosts)),
-        switchMap(([id, posts]) => {
-            if(!posts.length) {
-                return this.postFacadeService.getPostByID(id).pipe(
-                        map((post) => {
-                            const { title, description } = post;
-                            const posts: Post[] = [{ id, title, description }];
+        switchMap(([id, posts]) => (!posts.length) ? this.postFacadeService.getPostByID(id).pipe(
+                map((post) => {
+                    const { title, description } = post;
+                    const posts: Post[] = [{ id, title, description }];
 
-                            return loadedPostsAction({ posts })
-                        }))
-            }
-            return of(dummyAction())
-        })
+                    return loadedPostsAction({ posts })
+                })) : of(dummyAction())
+        )
     ));
 
     navigateOnAddUpdatePost$  = createEffect(() => this.actions$.pipe(
