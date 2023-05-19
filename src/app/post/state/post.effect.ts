@@ -21,8 +21,8 @@ export class PostEffects {
     loadPost$ = createEffect(() => this.actions$.pipe(
         ofType(loadPostsAction),
         withLatestFrom(this.store.select(getAllPosts)),
-        switchMap(([action, posts]) => (
-            (!posts.length || posts.length === 1) ? 
+        switchMap(([, posts]) => (
+            (posts.length <= 1) ? 
             this.postFacadeService.getPostList().pipe(
             map((posts: Post[]) => loadedPostsAction({ posts }))
             ) : of(dummyAction())
