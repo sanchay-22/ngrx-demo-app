@@ -6,7 +6,7 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 @Injectable({
   providedIn: 'root'
 })
-export class TodoBaseApiService extends EntityCollectionServiceBase<Todo> {
+export class TodoEntityBaseService extends EntityCollectionServiceBase<Todo> {
 
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Todo', serviceElementsFactory);

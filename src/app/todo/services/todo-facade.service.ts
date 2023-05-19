@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TodoBaseApiService } from './todo-base-api.service';
+import { TodoEntityBaseService } from './todo-entity-base.service';
 import { Observable } from 'rxjs';
 import { Todo } from '../misc/todo.model';
 
@@ -8,9 +8,9 @@ import { Todo } from '../misc/todo.model';
 })
 export class TodoFacadeService {
 
-  constructor(private todoBaseApiService: TodoBaseApiService) {}
+  constructor(private todoEntityBaseService: TodoEntityBaseService) {}
 
   getAllTodos(): Observable<Todo[]> {
-    return this.todoBaseApiService.getAll();
+    return this.todoEntityBaseService.getAll();
   }
 }
