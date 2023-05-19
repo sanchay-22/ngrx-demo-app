@@ -14,7 +14,7 @@ const routes: Routes = [
     resolve: { todos: TodosResolver },
     children: [
       {
-        path: 'create',
+        path: 'add',
         component: CreateTodoComponent
       },
       {
@@ -22,7 +22,7 @@ const routes: Routes = [
         component: EditTodoComponent
       },
       {
-        path: 'detail/:id',
+        path: 'details/:id',
         component: PostDetailsComponent
       }
     ]
