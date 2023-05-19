@@ -8,11 +8,8 @@ import { Todo } from '../../misc/todo.model';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
   todos$: Observable<Todo[]> = this.todoFacadeService.getAllTodos();
+  
   constructor(private todoFacadeService: TodoFacadeService) {}
-
-  ngOnInit(): void {
-    this.todoFacadeService.getAllTodos().subscribe();
-  }
 }
