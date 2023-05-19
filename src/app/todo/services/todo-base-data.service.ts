@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Todo } from '../misc/todo.model';
 import { HttpClient } from '@angular/common/http';
-import { HttpOptions } from '@ngrx/data/src/dataservices/interfaces';
 import { Observable, map } from 'rxjs';
 
 
