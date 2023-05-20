@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Todo, TodoPayloadAttributes } from '../misc/todo.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { TodoBlService } from './todo-bl.service';
 import { Update } from '@ngrx/entity';
 
@@ -29,6 +29,6 @@ export class TodoBaseDataService extends DefaultDataService<Todo> {
   }
 
   override update(payload: Update<Todo>): Observable<Todo> {
-    return this.http.put<Todo>(`${this.todoBaseUrl}${payload.id}.json`, {...payload.changes});
+    return this.http.put<Todo>(`${this.todoBaseUrl}${payload.id}.json`, { ...payload.changes });
   }
 }

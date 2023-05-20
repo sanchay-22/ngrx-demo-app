@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TodoFacadeService } from '../../services/todo-facade.service';
 import { Todo, TodoPayloadAttributes } from '../../misc/todo.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, filter, map, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { TodoEntityBaseService } from '../../services/todo-entity-base.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class EditTodoComponent {
   }
 
   onEditTodo(): void {
-    const payload: TodoPayloadAttributes = this.editTodoForm.value;
-    // this.todoFacadeService.addTodo(payload).subscribe(() => this.router.navigate(['/todos']));
+    const payload = { ...this.editTodoForm.value, id: this.todoID };
+    this.todoFacadeService.updateTodo(payload).subscribe(() =>  this.router.navigate(['/todos']));
   }
 }

@@ -17,4 +17,8 @@ export class TodoFacadeService {
   getAllTodos(): Observable<Todo[]> {
     return this.todoEntityBaseService.entities$;//this code will not directly hit api, rather it will emit the collection maintained by the todoEntityBaseService 
   }
+
+  updateTodo(payload: Todo): Observable<Todo> {
+    return this.todoEntityBaseService.update(payload);
+  }
 }
