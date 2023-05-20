@@ -9,7 +9,12 @@ import { Todo } from '../../misc/todo.model';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
+
   todos$: Observable<Todo[]> = this.todoFacadeService.getAllTodos();
 
   constructor(private todoFacadeService: TodoFacadeService) {}
+
+  deleteTodo(todoID: string): void {
+    console.log(todoID)
+  }
 }

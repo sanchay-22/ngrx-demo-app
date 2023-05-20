@@ -8,6 +8,7 @@
                     <th>Title</th>
                     <th>Description</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,11 @@
                     <td>{{todo.title}}</td>
                     <td>{{todo.des}}</td>
                     <td>{{todo.status}}</td>
+                    <td>
+                        <a href="" [routerLink]="['/todos','edit',todo.id]"><button>Edit</button></a> &nbsp;
+                        <a href=""><button (click)="deleteTodo(todo.id)">Delete</button></a>
+                    </td>
+                    
                 </tr>
             </tbody>
         </table>
