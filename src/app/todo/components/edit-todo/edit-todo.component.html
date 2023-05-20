@@ -1,1 +1,24 @@
-<p>edit-todo works!</p>
+<div style="font-size: smaller;">
+    <div>
+        <h6>Edit Todo</h6>
+    </div>
+    <div>
+        <form action="" [formGroup]="editTodoForm" (ngSubmit)="onEditTodo()">
+            <div class="mb-3">
+                <label for="">Title</label>
+                <input type="text" class="form-control" formControlName="title">
+            </div>   
+            <div class="mb-3">
+                <label for="">Description</label>
+                <input type="text" class="form-control" formControlName="des">
+            </div>  
+            <div class="mb-3">
+                <label for="">Status</label>
+                <input type="text" class="form-control" formControlName="status">
+            </div>    
+            <div>
+                <button type="submit" >Save</button>
+            </div>   
+        </form>
+    </div>
+</div>
