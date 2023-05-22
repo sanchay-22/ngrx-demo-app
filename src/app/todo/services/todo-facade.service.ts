@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { TodoEntityBaseService } from './todo-entity-base.service';
-import { Observable } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { Todo } from '../misc/todo.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoFacadeService {
- 
+
   constructor(private todoEntityBaseService: TodoEntityBaseService) {}
 
   addTodo(payload: any): Observable<Todo> {
@@ -20,5 +20,9 @@ export class TodoFacadeService {
 
   updateTodo(payload: Todo): Observable<Todo> {
     return this.todoEntityBaseService.update(payload);
+  }
+
+  deletePost(id: string): Observable<boolean> {
+    return this.todoEntityBaseService.delete(id).pipe(map(() => true));
   }
 }

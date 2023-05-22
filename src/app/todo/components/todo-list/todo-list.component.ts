@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoFacadeService } from '../../services/todo-facade.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Todo } from '../../misc/todo.model';
 
 @Component({
@@ -14,7 +14,10 @@ export class TodoListComponent {
 
   constructor(private todoFacadeService: TodoFacadeService) {}
 
-  deleteTodo(todoID: string): void {
-    console.log(todoID)
+  deleteTodo(event: Event, todoID: string): void {
+    event.preventDefault();
+    if(confirm('Are you sure, you want to delete?')){
+      this.todoFacadeService.deletePost(todoID).pipe(tap((data) => console.log(data))).subscribe();
+    }
   }
 }
