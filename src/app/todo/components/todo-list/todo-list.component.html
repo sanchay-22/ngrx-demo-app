@@ -18,10 +18,11 @@
                     <td>{{todo.des}}</td>
                     <td>{{todo.status}}</td>
                     <td>
-                        <a href="" [routerLink]="['/todos','edit',todo.id]"><button>Edit</button></a> &nbsp;
-                        <a href=""><button (click)="deleteTodo($event ,todo.id)">Delete</button></a>
+                      <a [routerLink]="['/todos', 'details', todo.id]"> <button>Details</button> </a> &nbsp;
+                      <a href="" [routerLink]="['/todos','edit',todo.id]"><button>Edit</button></a> &nbsp;&nbsp;
+                      <a href=""><button (click)="deleteTodo($event ,todo.id)">Delete</button></a>
                     </td>
-                    
+
                 </tr>
             </tbody>
         </table>

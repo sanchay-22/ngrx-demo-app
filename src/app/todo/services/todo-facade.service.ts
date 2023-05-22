@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TodoEntityBaseService } from './todo-entity-base.service';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Todo } from '../misc/todo.model';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class TodoFacadeService {
   }
 
   getAllTodos(): Observable<Todo[]> {
-    return this.todoEntityBaseService.entities$;//this code will not directly hit api, rather it will emit the collection maintained by the todoEntityBaseService 
+    return this.todoEntityBaseService.entities$;//this code will not directly hit api, rather it will emit the collection maintained by the todoEntityBaseService
   }
 
   updateTodo(payload: Todo): Observable<Todo> {

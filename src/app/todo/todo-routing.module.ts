@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { CreateTodoComponent } from './components/create-todo/create-todo.component';
 import { EditTodoComponent } from './components/edit-todo/edit-todo.component';
-import { PostDetailsComponent } from '../post/post-details/post-details.component';
 import { TodosResolver } from './todo.resolver';
 import { TodoBaseDataService } from './services/todo-base-data.service';
+import { TodoDetailsComponent } from './components/todo-details/todo-details.component';
 
 const routes: Routes = [
   {
@@ -15,15 +15,18 @@ const routes: Routes = [
     children: [
       {
         path: 'add',
-        component: CreateTodoComponent
+        component: CreateTodoComponent,
+        resolve: { todos: TodosResolver },
       },
       {
         path: 'edit/:id',
-        component: EditTodoComponent
+        component: EditTodoComponent,
+        resolve: { todos: TodosResolver },
       },
       {
         path: 'details/:id',
-        component: PostDetailsComponent
+        component: TodoDetailsComponent,
+        resolve: { todos: TodosResolver },
       }
     ]
   }
